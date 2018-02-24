@@ -1,0 +1,13 @@
+    int find(int v)
+    {
+        int r = v;
+        while (parent[r] != -1)
+            r = parent[r];
+        while (parent[v] != -1)
+        {
+            int tmp = v;
+            v = parent[v];
+            parent[v] = r;
+        }
+        return v;
+    }
