@@ -1,0 +1,54 @@
+#include <vector>
+#include <iostream>
+ 
+using namespace std;
+ 
+struct DSU {
+    vector<int> parent;
+ 
+    DSU(int size) {
+        parent.resize(size, -1);
+    }
+ 
+    void hang(int v, int p) {
+        parent[v] = p;
+    }
+ 
+    void print() {
+        for (int i = 0; i < parent.size(); ++i) {
+            if (parent[i] != -1) {
+                cout << i << "->" << parent[i] << endl;
+            }
+        }
+    }
+    int find(int v)
+    {
+        while (parent[v] != -1)
+            v = parent[v];
+        return v;
+    }
+};
+ 
+int main()
+{
+    int N = 0, M = 0, count = 0;
+    cin >> N >> M;
+    DSU dsu(N + 1);
+    for (int i = 0; i < M; i++) {
+        int x = 0, y = 0;
+        cin >> x >> y;
+        if (dsu.find(x) != dsu.find(y)) {
+            dsu.hang(x, y);
+            N--;
+        }
+        if (N == 1) {
+            break;
+        }
+        count++;
+    }
+    cout << count;
+ 
+    dsu.print();
+ 
+    return 0;
+}
