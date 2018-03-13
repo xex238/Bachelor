@@ -4,10 +4,12 @@
 using namespace std;
 
 // Объявляем структуру Ребро, которой будем пользоваться для построения графа и дерева
-struct edge{
+struct edge
+{
     int x, y; //вершины
-    edge(){}
-    edge(int a, int b){
+    edge() = default;
+    edge(int a, int b)
+    {
         x = a;
         y = b;
     }
