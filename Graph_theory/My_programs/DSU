@@ -1,0 +1,85 @@
+#include <ctime>
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+class DSU
+{
+public:
+	DSU() = default;
+	~DSU() = default;
+	void RESET(const int& x);
+	void JOIN(const int& j, const int& k);
+	void CHECK(int j, int k);
+
+	int Find(int x);
+private:
+	int* p;
+};
+
+void DSU::RESET(const int& n)
+{
+	p = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		p[i] = i;
+	}
+	cout << "RESET DONE" << endl;
+}
+
+void DSU::JOIN(const int& j, const int& k)
+{
+	int jj = Find(j);
+	int kk = Find(k);
+	if (jj != kk)
+	{
+		p[jj] = kk;
+	}
+	else
+	{
+		cout << "ALREADY " << j << " " << k << endl;
+	}
+}
+
+void DSU::CHECK(int j, int k)
+{
+	j = Find(j);
+	k = Find(k);
+	if (j == k)
+	{
+		cout << "YES" << endl;
+	}
+	else
+	{
+		cout << "NO" << endl;
+	}
+}
+
+int DSU::Find(int x)
+{
+	if (p[x] == x)
+	{
+		return x;
+	}
+	return p[x] = Find(p[x]);
+}
+
+int main()
+{
+	DSU dsu_1 = DSU();
+
+	dsu_1.RESET(15);
+	dsu_1.JOIN(14, 10);
+	dsu_1.JOIN(13, 8);
+	dsu_1.JOIN(0, 9);
+	dsu_1.JOIN(8, 3);
+	dsu_1.JOIN(4, 1);
+	dsu_1.JOIN(10, 5);
+	dsu_1.JOIN(8, 4);
+	dsu_1.CHECK(2, 11);
+	dsu_1.JOIN(4, 1);
+	dsu_1.JOIN(2, 6);
+	dsu_1.CHECK(9, 1);
+	dsu_1.JOIN(6, 5);
+	dsu_1.CHECK(10, 5);
+}
