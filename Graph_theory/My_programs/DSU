@@ -1,6 +1,7 @@
 #include <ctime>
 #include <iostream>
 #include <cstdlib>
+#include <string>
 using namespace std;
 
 class DSU
@@ -68,18 +69,28 @@ int main()
 {
 	DSU dsu_1 = DSU();
 
-	dsu_1.RESET(15);
-	dsu_1.JOIN(14, 10);
-	dsu_1.JOIN(13, 8);
-	dsu_1.JOIN(0, 9);
-	dsu_1.JOIN(8, 3);
-	dsu_1.JOIN(4, 1);
-	dsu_1.JOIN(10, 5);
-	dsu_1.JOIN(8, 4);
-	dsu_1.CHECK(2, 11);
-	dsu_1.JOIN(4, 1);
-	dsu_1.JOIN(2, 6);
-	dsu_1.CHECK(9, 1);
-	dsu_1.JOIN(6, 5);
-	dsu_1.CHECK(10, 5);
+	string str;
+	int x{ 0 };
+	int y{ 0 };
+
+	while (cin >> str)
+	{
+		if (str == "RESET")
+		{
+			cin >> x;
+			dsu_1.RESET(x);
+		}
+		if (str == "JOIN")
+		{
+			cin >> x;
+			cin >> y;
+			dsu_1.JOIN(x, y);
+		}
+		if (str == "CHECK")
+		{
+			cin >> x;
+			cin >> y;
+			dsu_1.CHECK(x, y);
+		}
+	}
 }
