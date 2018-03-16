@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lab_1
+{
+    class Program
+    {
+        public static double Vich_mash(int n, int r)
+        {
+            Random rand = new Random();
+
+            int[] x = new int[n]; // Это х координата n-ой точки на плоскости
+            int[] y = new int[n]; // Это у координата n-ой точки на плоскости
+            double count = 0;
+            double pi = 0;
+
+            for (int i=0; i<n; i++)
+            {
+                x[i] = rand.Next(r);
+                y[i] = rand.Next(r);
+                //Console.WriteLine("{0} {1}", x[i], y[i]);
+            }
+
+            for (int i=0; i<n; i++)
+            {
+                if ((x[i]*x[i]+y[i]*y[i]) < r*r)
+                {
+                    count++;
+                }
+            }
+            //pi = (double)(count / n);
+            pi = (count / n) * 4;
+            Console.WriteLine("pi: {0}", pi);
+            Console.WriteLine("count: {0}", count);
+            Console.WriteLine("n: {0}", n);
+            return pi;
+        }
+        static void Main(string[] args)
+        {
+            int r; // r - радиус, l - длина окружности
+            double pi = Vich_mash(10000, 10);
+            Console.WriteLine(pi);
+        }
+    }
+}
