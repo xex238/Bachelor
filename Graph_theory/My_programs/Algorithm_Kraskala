@@ -1,79 +1,167 @@
-#include <algorithm>
 #include <iostream>
-#include <vector>
-#include <cstdio>
+#include <string>
 using namespace std;
 
-struct edge
+class Spanning_tree
 {
-	int x, y;
-	edge() = default;
-	edge(int x, int y);
+public:
+	Spanning_tree();
+	void Set_size(const int& x1, const int& x2);
+	void Set_edge(const int& x1, const int& x2, const int& weight);
+	void Sort_on_weight();
+	void Do_new_three();
+
+	void RESET(const int& x);
+	void JOIN(const int& j, const int& k);
+	bool CHECK(const int& j, const int& k);
+
+	int Find(const int& x);
+
+private:
+	int **old_mas;
+	int length_old_mas{ 0 };
+	int current{ 0 };
+	int count_of_edge{ 0 };
+	int count_of_vertex{ 0 };
+
+	int* new_mas;
 };
 
-edge::edge(int x, int y)
+Spanning_tree::Spanning_tree()
 {
-	this->x = x;
-	this->y = y;
+	old_mas = new int*[3];
+}
+
+void Spanning_tree::Set_size(const int& edge, const int& vertex)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		old_mas[i] = new int[edge];
+	}
+	length_old_mas = edge;
+
+	count_of_edge = edge;
+	count_of_vertex = vertex;
+}
+
+void Spanning_tree::Set_edge(const int& first_vertex, const int& second_vertex, const int& weight)
+{
+	old_mas[0][current] = first_vertex; // Первая вершина
+	old_mas[1][current] = second_vertex; // Вторая вершина
+	old_mas[2][current] = weight; // Вес ребра
+	current++;
+}
+
+void Spanning_tree::Sort_on_weight()
+{
+	int min{ old_mas[2][0] };
+	int number{ 0 };
+	int additional_var{ 0 };
+	for (int i = 0; i < length_old_mas; i++)
+	{
+		min = old_mas[2][i];
+		number = i;
+		for (int j = i; j < length_old_mas; j++)
+		{
+			if (old_mas[2][j] < min)
+			{
+				min = old_mas[2][j];
+				number = j;
+			}
+		}
+		for (int j = 0; j < 3; j++)
+		{
+			additional_var = old_mas[j][i];
+			old_mas[j][i] = old_mas[j][number];
+			old_mas[j][number] = additional_var;
+		}
+	}
+}
+
+void Spanning_tree::Do_new_three()
+{
+	RESET(count_of_vertex);
+	int result_weight{ 0 };
+	int current_count_of_join_edge{ 0 };
+
+	for (int i = 0; i < count_of_vertex; i++)
+	{
+		if (!CHECK(old_mas[0][i] - 1, old_mas[1][i] - 1))
+		{
+			JOIN(old_mas[0][i] - 1, old_mas[1][i] - 1);
+			result_weight = result_weight + old_mas[2][i];
+			current_count_of_join_edge++;
+		}
+		if (current_count_of_join_edge + 1 == count_of_vertex)
+		{
+			break;
+		}
+	}
+
+	cout << result_weight << endl;
+}
+
+void Spanning_tree::RESET(const int& n)
+{
+	new_mas = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		new_mas[i] = i;
+	}
+}
+
+void Spanning_tree::JOIN(const int& j, const int& k)
+{
+	int jj = Find(j);
+	int kk = Find(k);
+	if (jj != kk)
+	{
+		new_mas[jj] = kk;
+	}
+}
+
+bool Spanning_tree::CHECK(const int& j, const int& k)
+{
+	if (Find(j) == Find(k))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+int Spanning_tree::Find(const int& x)
+{
+	if (new_mas[x] == x)
+	{
+		return x;
+	}
+	return new_mas[x] = Find(new_mas[x]);
 }
 
 int main()
 {
-	int m, n; // m - рёбра, n - множество вершин
-	cin >> m >> n;
-	cout << endl;
+	Spanning_tree st = Spanning_tree();
 
-	vector<edge> graph(m); // Рёбра исходного графа
-	vector<edge> three; // Рёбра нового дерева
-	vector<int> variety(n); // Множество вершин
+	int vertex_1{ 0 };
+	int vertex_2{ 0 };
+	int weight{ 0 };
+	int vertex{ 0 };
+	int edge{ 0 };
 
-	for (int i = 0; i < n; i++) // Определяем для каждой вершины своё множество
+	cin >> vertex;
+	cin >> edge;
+
+	st.Set_size(edge, vertex);
+
+	for (int i = 0; i < edge; i++)
 	{
-		variety[i] = i;
+		cin >> vertex_1 >> vertex_2 >> weight;
+		st.Set_edge(vertex_1, vertex_2, weight);
 	}
 
-	int a{ 0 };
-	int b{ 0 };
-	for (int i = 0; i < m; i++) // Заполняем рёбра исходного графа
-	{
-		cin >> a >> b;
-		cout << endl;
-		graph[i].x = a;
-		graph[i].y = b;
-	}
-
-	// Проверяем вершины каждого ребра. Если вершины не принадлежат одному и тому же множеству,
-	// то такое ребро добавляем в наше дерево, а вершины помещаем в одно множество
-	int old_variety{ 0 };
-	int new_variety{ 0 };
-	for (int i = 0; i < m; i++)
-	{
-		a = graph[i].x;
-		b = graph[i].y;
-		if (variety[a] != variety[b])
-		{
-			three.push_back(graph[i]);
-			old_variety = variety[b];
-			new_variety = variety[a];
-			for (int j = 0; j < n; j++)
-			{
-				if (variety[j] == old_variety)
-				{
-					variety[j] = new_variety;
-				}
-			}
-		}
-	}
-
-	cout << "Old tree" << endl;
-	for (int i = 0; i < m; i++)
-	{
-		cout /*<< i */<< " " << graph[i].x << " " << graph[i].y << endl;
-	}
-	cout << "New tree" << endl;
-	for (int i = 0; i < three.size(); i++)
-	{
-		cout /*<< i */<< " " << three[i].x << " " << three[i].y << endl;
-	}
-	cout << endl;
+	st.Sort_on_weight();
+	st.Do_new_three();
 }
