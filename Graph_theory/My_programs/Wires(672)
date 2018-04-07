@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+// Сможем ли мы сделать count_lines отрезков длины length
+// Возвращает количество отрезков, которое можно сделать длины length
+int Check_K(const int& count_lines, int* mas_length_lines, const int& count_wires, const int& length)
+{
+	int count{ 0 };
+	for (int i = 0; i < count_wires; i++)
+	{
+		count = count + mas_length_lines[i] / length;
+	}
+	return count;
+}
+
+int main()
+{
+	int count_wires{ 0 };
+	int count_lines{ 0 };
+	cin >> count_wires; // Количество проводов, вводимых с клавиатуры
+	cin >> count_lines; // Количество отрезков, которое нам надо найти
+	int* mas_length_lines = new int[count_wires]; // Создаём массив вводимых отрезков
+	for (int i = 0; i < count_wires; i++)
+	{
+		cin >> mas_length_lines[i];
+	}
+
+	int max_length{ mas_length_lines[0] }; // Максимальная длина отрезка
+	int min_length{ 0 }; // Минимальная длина отрезка
+
+	for (int i = 0; i < count_wires; i++)
+	{
+		if (max_length < mas_length_lines[i])
+		{
+			max_length = mas_length_lines[i];
+		}
+	}
+
+	int check{ 0 };
+
+	while (max_length - min_length > 2)
+	{
+		check = Check_K(count_lines, mas_length_lines, count_wires, (max_length + min_length) / 2);
+		if (check >= count_lines)
+		{
+			min_length = (max_length + min_length) / 2;
+		}
+		else
+		{
+			max_length = (max_length + min_length) / 2;
+		}
+	}
+
+	if (count_lines == Check_K(count_lines, mas_length_lines, count_wires, max_length))
+	{
+		cout << max_length << endl;
+	}
+	else
+	{
+		cout << min_length << endl;
+	}
+}
