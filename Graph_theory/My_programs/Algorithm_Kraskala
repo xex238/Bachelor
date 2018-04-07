@@ -6,8 +6,8 @@ class Spanning_tree
 {
 public:
 	Spanning_tree();
-	void Set_size(const int& x1, const int& x2);
-	void Set_edge(const int& x1, const int& x2, const int& weight);
+	void Set_size(const int& edge, const int& vertex);
+	void Set_edge(const int& first_vertex, const int& second_vertex, const int& weight);
 	void Sort_on_weight();
 	void Do_new_three();
 
@@ -55,25 +55,25 @@ void Spanning_tree::Set_edge(const int& first_vertex, const int& second_vertex, 
 void Spanning_tree::Sort_on_weight()
 {
 	int min{ old_mas[2][0] };
-	int number{ 0 };
+	int number_of_min_element{ 0 };
 	int additional_var{ 0 };
 	for (int i = 0; i < length_old_mas; i++)
 	{
 		min = old_mas[2][i];
-		number = i;
+		number_of_min_element = i;
 		for (int j = i; j < length_old_mas; j++)
 		{
 			if (old_mas[2][j] < min)
 			{
 				min = old_mas[2][j];
-				number = j;
+				number_of_min_element = j;
 			}
 		}
 		for (int j = 0; j < 3; j++)
 		{
 			additional_var = old_mas[j][i];
-			old_mas[j][i] = old_mas[j][number];
-			old_mas[j][number] = additional_var;
+			old_mas[j][i] = old_mas[j][number_of_min_element];
+			old_mas[j][number_of_min_element] = additional_var;
 		}
 	}
 }
@@ -126,10 +126,7 @@ bool Spanning_tree::CHECK(const int& j, const int& k)
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
 
 int Spanning_tree::Find(const int& x)
