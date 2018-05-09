@@ -67,7 +67,6 @@ bool Cows_and_bulls::Step_1()
 
 	// Вывод массива output на экран
 	Print_output();
-
 	// Ввод коров и быков
 	cout << " ";
 	cin >> cows >> bulls;
@@ -85,26 +84,31 @@ bool Cows_and_bulls::Step_1()
 	count_of_tries++;
 
 	// Вывод вспомогательных значений на экран
-	//for (int i = 0; i < count_of_numbers; i++)
-	//{
-	//	cout << cows_divided_in2parts[i];
-	//}
-	//cout << endl;
-	//for (int i = 0; i < size_cc; i++)
-	//{
-	//	cout << check_cow[i];
-	//}
-	//cout << endl;
-	//for (int i = 0; i < size_cb; i++)
-	//{
-	//	cout << check_bull[i];
-	//}
-	//cout << endl;
-	//for (int i = 0; i < size_bn; i++)
-	//{
-	//	cout << bad_numbers[i];
-	//}
-	//cout << endl;
+	for (int i = 0; i < count_of_numbers; i++)
+	{
+		cout << cows_divided_in2parts[i];
+	}
+	cout << endl;
+	for (int i = 0; i < size_cc; i++)
+	{
+		cout << check_cow[i];
+	}
+	cout << endl;
+	for (int i = 0; i < size_cb; i++)
+	{
+		cout << check_bull[i];
+	}
+	cout << endl;
+	for (int i = 0; i < size_bn; i++)
+	{
+		cout << bad_numbers[i];
+	}
+	cout << endl;
+	//cout << "size_cdi_part_1 = " << size_cdi_part_1 << endl;
+	//cout << "size_cdi_part_2 = " << size_cdi_part_2 << endl;
+	//cout << "size_cc = " << size_cc << endl;
+	//cout << "size_cb = " << size_cb << endl;
+	//cout << "size_bn = " << size_bn << endl;
 
 	// Проверяем условия для перехода на следующий этап
 	Check_conditions_for_the_step_2();
@@ -182,6 +186,7 @@ void Cows_and_bulls::Check_conditions_for_the_step_2()
 		}
 		for (int i = count_of_tries; i < 5; i++)
 		{
+			cout << "sgkjdghgdrfhhrkesfgifheru" << endl;
 			bad_numbers[size_bn] = i;
 			size_bn++;
 			bad_numbers[size_bn] = 9 - i;
@@ -190,7 +195,7 @@ void Cows_and_bulls::Check_conditions_for_the_step_2()
 	}
 }
 
-bool Cows_and_bulls::Step_2()
+bool Cows_and_bulls::Step_2()  
 {
 	// Заполнение output в зависимости от исходных параметров
 	Selection_for_Filling_output_step_2();
@@ -211,6 +216,37 @@ bool Cows_and_bulls::Step_2()
 	// Прибавляем номер попытки
 	count_of_tries++;
 
+	// Вывод вспомогательных значений на экран
+	for (int i = 0; i < count_of_numbers; i++)
+	{
+		cout << cows_divided_in2parts[i];
+	}
+	cout << endl;
+	for (int i = 0; i < size_cc; i++)
+	{
+		cout << check_cow[i];
+	}
+	cout << endl;
+	for (int i = 0; i < size_cb; i++)
+	{
+		cout << check_bull[i];
+	}
+	cout << endl;
+	for (int i = 0; i < size_bn; i++)
+	{
+		cout << bad_numbers[i];
+	}
+	cout << endl;
+	//cout << "id_check = " << id_check << endl;
+	//cout << "size_cdi_part_1 = " << size_cdi_part_1 << endl;
+	//cout << "size_cdi_part_2 = " << size_cdi_part_2 << endl;
+	//cout << "size_cc = " << size_cc << endl;
+	cout << "size_cb = " << size_cb << endl;
+	//cout << "size_bn = " << size_bn << endl;
+
+	// Проверяем условие на автозаполнение массива cows_divided_in_two_parts
+	Check_automatic_filling_cows_divided_in_two_parts();
+
 	// Проверяем условия для перехода на следующий этап
 	Check_conditions_for_the_step_3();
 
@@ -220,41 +256,49 @@ void Cows_and_bulls::Selection_for_Filling_output_step_2()
 {
 	if ((size_cc != 0) && (size_cb != 0))
 	{
+		cout << "It's id_check = 23" << endl;
 		Filling_output(check_cow[0], check_bull[1]);
 		id_check = 23;
 	}
 	else if ((size_cc != 0) && (size_bn != 0))
 	{
+		cout << "It's id_check = 24" << endl;
 		Filling_output(check_cow[0], bad_numbers[0]);
 		id_check = 24;
 	}
 	else if ((size_cc != 0) && (size_cdi_part_1 != 0))
 	{
+		cout << "It's id_check = 211" << endl;
 		Filling_output(cows_divided_in2parts[0], check_cow[1]);
 		id_check = 211;
 	}
 	else if ((size_cc != 0) && (size_cdi_part_2 != 0))
 	{
+		cout << "It's id_check = 212" << endl;
 		Filling_output(check_cow[0], cows_divided_in2parts[count_of_numbers / 2]);
 		id_check = 212;
 	}
 	else if ((size_cb != 0) && (size_bn != 0))
 	{
+		cout << "It's id_check = 34" << endl;
 		Filling_output(check_bull[0], bad_numbers[0]);
 		id_check = 34;
 	}
 	else if ((size_cb != 0) && (size_cdi_part_1 != 0))
 	{
+		cout << "It's id_check = 311" << endl;
 		Filling_output(cows_divided_in2parts[0], check_bull[1]);
 		id_check = 311;
 	}
 	else if ((size_cb != 0) && (size_cdi_part_2 != 0))
 	{
+		cout << "It's id_check = 312" << endl;
 		Filling_output(check_bull[0], cows_divided_in2parts[count_of_numbers / 2]);
 		id_check = 312;
 	}
 	else if ((size_cc != 0) && (size_cb + size_bn + size_cdi_part_1 + size_cdi_part_2 == 0))
 	{
+		cout << "It's id_check = 22" << endl;
 		Filling_output(check_cow[0], check_cow[3]);
 		id_check = 22;
 	}
@@ -273,7 +317,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 24)
+	else if (id_check == 24)
 	{
 		if (!((cows == 0) && (bulls == 0)) && !((cows == 1) && (bulls == 1)))
 		{
@@ -282,7 +326,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 212)
+	else if (id_check == 212)
 	{
 		if (!((cows == 1) && (bulls == 1)) && !((cows == 2) && (bulls == 2)))
 		{
@@ -291,7 +335,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 211)
+	else if (id_check == 211)
 	{
 		if (!((cows == 1) && (bulls == 1)) && !((cows == 2) && (bulls == 2)))
 		{
@@ -300,7 +344,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 22)
+	else if (id_check == 22)
 	{
 		if (((cows == 1) && (bulls == 0)) || ((cows == 2) && (bulls == 1)))
 		{
@@ -309,7 +353,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 34)
+	else if (id_check == 34)
 	{
 		if (!((cows == 1) && (bulls == 0)) && !((cows == 1) && (bulls == 1)))
 		{
@@ -318,7 +362,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 312)
+	else if (id_check == 312)
 	{
 		if (!((cows == 2) && (bulls == 1)) && !((cows == 2) && (bulls == 2)))
 		{
@@ -327,7 +371,7 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_2()
 			goto retry_2;
 		}
 	}
-	if (id_check == 311)
+	else if (id_check == 311)
 	{
 		if (!((cows == 2) && (bulls == 1)) && !((cows == 2) && (bulls == 2)))
 		{
@@ -347,18 +391,18 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 			size_cdi_part_1++;
 			cows_divided_in2parts[size_cdi_part_1] = check_bull[1];
 			size_cdi_part_1++;
-			cows_divided_in2parts[size_cdi_part_2] = check_cow[1];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_cow[1];
 			size_cdi_part_2++;
 			bad_numbers[size_bn] = check_cow[0];
 			size_bn++;
 		}
 		if ((cows == 1) && (bulls == 1))
 		{
-			cows_divided_in2parts[size_cdi_part_2] = check_bull[0];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[0];
 			size_cdi_part_2++;
-			cows_divided_in2parts[size_cdi_part_2] = check_bull[1];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[1];
 			size_cdi_part_2++;
-			cows_divided_in2parts[size_cdi_part_2] = check_cow[1];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_cow[1];
 			size_cdi_part_2++;
 			bad_numbers[size_bn] = check_cow[0];
 			size_bn++;
@@ -376,9 +420,9 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		}
 		if ((cows == 2) && (bulls == 2))
 		{
-			cows_divided_in2parts[size_cdi_part_2] = check_bull[0];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[0];
 			size_cdi_part_2++;
-			cows_divided_in2parts[size_cdi_part_2] = check_bull[1];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[1];
 			size_cdi_part_2++;
 			cows_divided_in2parts[size_cdi_part_1] = check_cow[0];
 			size_cdi_part_1++;
@@ -387,11 +431,11 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		Moving_array(check_cow, size_cc);
 		Moving_array(check_bull, size_cb);
 	}
-	if (id_check == 24)
+	else if (id_check == 24)
 	{
 		if ((cows == 0) && (bulls == 0))
 		{
-			cows_divided_in2parts[size_cdi_part_2] = check_cow[1];
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_cow[1];
 			size_cdi_part_2++;
 			bad_numbers[size_bn] = check_cow[0];
 			size_bn++;
@@ -405,7 +449,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		}
 		Moving_array(check_cow, size_cc);
 	}
-	if (id_check == 212)
+	else if (id_check == 212)
 	{
 		if ((cows == 1) && (bulls == 1))
 		{
@@ -423,7 +467,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		}
 		Moving_array(check_cow, size_cc);
 	}
-	if (id_check = 211)
+	else if (id_check == 211)
 	{
 		if ((cows == 1) && (bulls == 1))
 		{
@@ -441,7 +485,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		}
 		Moving_array(check_cow, size_cc);
 	}
-	if (id_check == 22)
+	else if (id_check == 22)
 	{
 		if ((cows == 0) && (bulls == 0))
 		{
@@ -511,7 +555,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		Moving_array(check_cow, size_cc);
 		Moving_array(check_cow, size_cc);
 	}
-	if (id_check == 34)
+	else if (id_check == 34)
 	{
 		if ((cows == 1) && (bulls == 0))
 		{
@@ -529,7 +573,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		}
 		Moving_array(check_bull, size_cb);
 	}
-	if (id_check == 312)
+	else if (id_check == 312)
 	{
 		if ((cows == 2) && (bulls == 1))
 		{
@@ -547,7 +591,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 		}
 		Moving_array(check_bull, size_cb);
 	}
-	if (id_check == 311)
+	else if (id_check == 311)
 	{
 		if ((cows == 2) && (bulls == 1))
 		{
@@ -564,6 +608,45 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 			size_cdi_part_2++;
 		}
 		Moving_array(check_bull, size_cb);
+	}
+}
+void Cows_and_bulls::Check_automatic_filling_cows_divided_in_two_parts()
+{
+	if (size_cb != 0)
+	{
+		if (length_cdi_part_1 - size_cdi_part_1 < 2)
+		{
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[0];
+			size_cdi_part_2++;
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[1];
+			size_cdi_part_2++;
+		}
+		if (length_cdi_part_2 - size_cdi_part_2 < 2)
+		{
+			cows_divided_in2parts[size_cdi_part_1] = check_bull[0];
+			size_cdi_part_1++;
+			cows_divided_in2parts[size_cdi_part_1] = check_bull[1];
+			size_cdi_part_1++;
+		}
+		Moving_array(check_bull, size_cb);
+	}
+	if (size_cc != 0)
+	{
+		if (length_cdi_part_1 - size_cdi_part_1 == 0)
+		{
+			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_cow[1];
+			size_cdi_part_2++;
+			bad_numbers[size_bn] = check_cow[0];
+			size_bn++;
+		}
+		if (length_cdi_part_2 - size_cdi_part_2 == 0)
+		{
+			cows_divided_in2parts[size_cdi_part_1] = check_cow[0];
+			size_cdi_part_1++;
+			bad_numbers[size_bn] = check_cow[1];
+			size_bn++;
+		}
+		Moving_array(check_cow, size_cc);
 	}
 }
 void Cows_and_bulls::Check_conditions_for_the_step_3()
@@ -576,6 +659,26 @@ void Cows_and_bulls::Check_conditions_for_the_step_3()
 
 bool Cows_and_bulls::Step_3()
 {
+	// Заполнение output в зависимости от исходных параметров
+
+	// Выводим на экран массив output
+	Print_output();
+
+	// Ввод коров и быков
+	cout << " ";
+	cin >> cows >> bulls;
+
+	// Проверка коров и быков на допустимые значения
+
+	// Обработка значений
+
+	// Прибавляем номер попытки
+	count_of_tries++;
+
+	// Проверяем условие на автозаполнение массива result
+
+
+
 	return (bulls == count_of_numbers);
 }
 
@@ -603,7 +706,7 @@ void Cows_and_bulls::Moving_array(int* arr, int& size)
 	{
 		arr[i] = arr[i + 2];
 	}
-	size -= 2;
+	size = size - 2;
 }
 void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_level_1()
 {
