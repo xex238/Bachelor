@@ -17,6 +17,7 @@ public:
 	void Selection_for_Filling_output_step_2();
 	void Check_cows_and_bulls_for_valid_values_step_2(); // Проверка ограничений после ввода быков и коров
 	void Processing_cows_and_bulls_step_2(); // Обработка быков и коров на втором шаге
+	void Check_automatic_filling_cows_divided_in_two_parts(); // Проверяем условие на автозаполнение массива cows_divided_in_two_parts
 	void Check_conditions_for_the_step_3(); // Проверка условий для перехода на третий этап
 
 	bool Step_3();
@@ -28,11 +29,15 @@ public:
 private:
 	int count_of_numbers{ 0 };
 
+	// bool** matrix_of_chance;
+
 	int* cows_divided_in2parts;
 	int* check_cow;
 	int* check_bull;
 	int* bad_numbers;
 	int* output;
+	// int* result;
+	// int* check_bulls_step_3;
 
 	int size_cdi_part_1{ 0 };
 	int size_cdi_part_2{ 0 };
