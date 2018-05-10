@@ -2,14 +2,14 @@
 #include "Line.h"
 using namespace std;
 
-Line::Line(int x) // Если мы задаём только длину
+Line::Line(int x) // Г…Г±Г«ГЁ Г¬Г» Г§Г Г¤Г ВёГ¬ ГІГ®Г«ГјГЄГ® Г¤Г«ГЁГ­Гі
 {
 	mas = new char[x];
 	length = x;
 	mas[0] = 'A';
 }
 
-Line::Line(int x, char y) // Если мы задаём длину и начальную букву
+Line::Line(int x, char y) // Г…Г±Г«ГЁ Г¬Г» Г§Г Г¤Г ВёГ¬ Г¤Г«ГЁГ­Гі ГЁ Г­Г Г·Г Г«ГјГ­ГіГѕ ГЎГіГЄГўГі
 {
 	mas = new char[x];
 	length = x;
