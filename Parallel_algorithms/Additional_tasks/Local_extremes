@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace Task_2_Local_extremes_
+{
+    class Program
+    {
+        static int i_min = 0;
+        static int i_max = 0;
+        static double F(double x)
+        {
+            return (Math.Cos(2 * x) + Math.Sin(3 * x));
+        }
+        static void Find_extremes(int a, int b, double accuracy)
+        {
+            double difference = 0;
+
+            Stopwatch st_1 = new Stopwatch();
+            st_1.Start();
+
+            //for (int i = 0; i < (int)((b - a) / accuracy); i++)
+            Parallel.For(0, (int)((b - a) / accuracy - 1), i =>
+                {
+                    int x = i;
+                    double difference_ = F(a + x * accuracy) - F(a + (x - 1) * accuracy);
+                    if ((F(a + (x + 1) * accuracy) - F(a + x * accuracy) > 0) && (difference_ < 0))
+                    {
+                        i_min++;
+                    }
+                    if ((F(a + (x + 1) * accuracy) - F(a + x * accuracy) < 0) && (difference_ > 0))
+                    {
+                        i_max++;
+                    }
+                });
+            st_1.Stop();
+
+            Console.WriteLine("Computing with Parallel.For(). Total time: {0}", st_1.Elapsed.TotalSeconds);
+            Console.WriteLine("Count of points of minimum are {0}", i_min);
+            Console.WriteLine("Count of points of maximum are {0}", i_max);
+            difference = 0;
+            i_max = 0;
+            i_min = 0;
+
+            Stopwatch st_2 = new Stopwatch();
+            st_2.Start();
+
+            for (double i = a; i < b - accuracy; i += accuracy)
+            {
+                if ((F(i + accuracy) - F(i) > 0) && (difference < 0))
+                {
+                    i_min++;
+                }
+                if ((F(i + accuracy) - F(i) < 0) && (difference > 0))
+                {
+                    i_max++;
+                }
+                difference = F(i + accuracy) - F(i);
+            }
+            st_2.Stop();
+
+            Console.WriteLine("Computing with serial. Total time: {0}", st_2.Elapsed.TotalSeconds);
+            Console.WriteLine("Count of points of minimum are {0}", i_min);
+            Console.WriteLine("Count of points of maximum are {0}", i_max);
+        }
+        static void Main(string[] args)
+        {
+            int a = 0;
+            int b = 0;
+            double accuracy = 0; // Точность нахождения экстремумов
+
+            Console.WriteLine("Write b:");
+            b = int.Parse(Console.ReadLine());
+            Console.WriteLine("Write a:");
+            a = int.Parse(Console.ReadLine());
+            Console.WriteLine("Write accuracy:");
+            accuracy = double.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            Find_extremes(a, b, accuracy);
+        }
+    }
+}
