@@ -1,0 +1,178 @@
+using System;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Globalization;
+using System.Diagnostics;
+
+namespace Matrix_multiplication
+{
+    class Program
+    {
+        public static void Multiplication_serial(double[,] x1, int length)
+        {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            double[,] new_mas = new double[length, length];
+            double[,] new_mas_1 = new double[length, length];
+
+            for (int i = 0; i < length; i++)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    for (int k = 0; k < length; k++)
+                    {
+                        new_mas[i, j] = new_mas[i, j] + x1[i, k] * x1[k, j];
+                    }
+                }
+            }
+
+            Console.WriteLine("Execution time of the program with serial computing: {0}", st.Elapsed.TotalSeconds);
+
+            //string result_string = "";
+            //for (int i=0; i<length; i++)
+            //{
+            //    for (int j=0; j<length; j++)
+            //    {
+            //        result_string = result_string + new_mas[i, j].ToString() + ",";
+            //    }
+            //}
+
+            //File.WriteAllText("result.csv", result_string);
+
+            // Вывод первой строки на экран, вместо вывода в файл
+            Console.WriteLine("first string of the program");
+            for (int i = 0; i < length; i++)
+            {
+                Console.WriteLine("{0},", new_mas[i, 0]);
+            }
+        }
+        public static void Multiplication_Parallel_For(double[,] x1, int length)
+        {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            double[,] new_mas = new double[length, length];
+            double[,] new_mas_1 = new double[length, length];
+
+            Parallel.For(0, length, (i) =>
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    for (int k = 0; k < length; k++)
+                    {
+                        new_mas[i, j] = new_mas[i, j] + x1[i, k] * x1[k, j];
+                    }
+                }
+            });
+
+            Console.WriteLine("Execution time of the program with Parallel.For() computing: {0}", st.Elapsed.TotalSeconds);
+
+            //string result_string = "";
+            //for (int i=0; i<length; i++)
+            //{
+            //    for (int j=0; j<length; j++)
+            //    {
+            //        result_string = result_string + new_mas[i, j].ToString() + ",";
+            //    }
+            //}
+
+            //File.WriteAllText("result.csv", result_string);
+
+            // Вывод первой строки на экран, вместо вывода в файл
+            Console.WriteLine("first string of the program");
+            for (int i = 0; i < length; i++)
+            {
+                Console.WriteLine("{0},", new_mas[i, 0]);
+            }
+        }
+        public static double[] Multiplication_with_Tasks(Tuple<double[,], int, int> tuple)
+        {
+            double[,] x1 = tuple.Item1;
+            int length = tuple.Item2;
+            int i = tuple.Item3;
+
+            double[] new_mas = new double[length];
+            double[,] new_mas_1 = new double[length, length];
+
+            for (int j = 0; j < length; j++)
+            {
+                for (int k = 0; k < length; k++)
+                {
+                    new_mas[j] = new_mas[j] + x1[i, k] * x1[k, j];
+                }
+            }
+
+            return new_mas;
+        }
+        static void Main(string[] args)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
+            var lines = File.ReadAllLines("matrix.csv");
+            double[,] matrix = new double[lines.Length, lines.Length];
+            int i = 0;
+            foreach (string line in lines)
+            {
+                string[] line_s = line.Split(',');
+                int j = 0;
+                foreach (string str in line_s)
+                {
+                    matrix[i, j] = Double.Parse(str, CultureInfo.InvariantCulture);
+                    ++j;
+                }
+                ++i;
+            }
+
+            // Выполняем перемножение матриц в отдельном методе
+            Multiplication_serial(matrix, lines.Length);
+            Multiplication_Parallel_For(matrix, lines.Length);
+
+            Task<double[]>[] task = new Task<double[]>[1000];
+            Tuple<double[,], int, int>[] tuple = new Tuple<double[,], int, int>[1000];
+            double[,] result_matrix = new double[1000, 1000];
+
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            for (i = 0; i < 1000; i++)
+            {
+                tuple[i] = new Tuple<double[,], int, int>(matrix, lines.Length, i);
+                task[i] = new Task<double[]>(x => Multiplication_with_Tasks((Tuple<double[,], int, int>)x), tuple[i]);
+                task[i].Start();
+            }
+
+            for (i = 0; i < 1000; i++)
+            {
+                for (int j = 0; j < 1000; j++)
+                {
+                    result_matrix[i, j] = task[i].Result[j];
+                }
+            }
+
+            Console.WriteLine("Execution time of the program with tasks computing: {0}", st.Elapsed.TotalSeconds);
+
+            //string result_string = "";
+            //for (int i=0; i<length; i++)
+            //{
+            //    for (int j=0; j<length; j++)
+            //    {
+            //        result_string = result_string + new_mas[i, j].ToString() + ",";
+            //    }
+            //}
+
+            //File.WriteAllText("result.csv", result_string);
+
+            Console.WriteLine("first string of the program");
+            for (int j = 0; j < 1000; j++)
+            {
+                Console.WriteLine("{0},", result_matrix[j, 0]);
+            }
+
+            //Console.ReadKey();
+        }
+    }
+}
