@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using System.IO;
+
+namespace Computing_the_integral
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double result = 0.0; // Интеграл для каждого отрезка интегрирования
+            double b = 0.0; // b - точка конца интегрирования
+            double a = 0.0; // a - точка начала интегрирования
+            double delta_x = 0.0; // Шаг интегрирования на каждом отрезке
+            double step = 0.0; // Шаг интегрирования
+            int n = 0; // Количество отрезков интегрирования
+            Console.WriteLine("Write a:");
+            a = double.Parse(Console.ReadLine());
+            Console.WriteLine("Write b:");
+            b = double.Parse(Console.ReadLine());
+            Console.WriteLine("Write n:");
+            n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Write delta_x:");
+            delta_x = double.Parse(Console.ReadLine());
+            step = (b - a) / n;
+
+            // Параллельное вычисление с использованием Task
+            Task<double>[] task = new Task<double>[n];
+
+            Stopwatch st_1 = new Stopwatch();
+            st_1.Start();
+
+            for (int i = 0; i < n; i++)
+            {
+                double a_1 = a + i * step;
+                double b_1 = a + (i + 1) * step;
+                double delta_x_1 = delta_x;
+                double[] mas = new double[3] { a_1, b_1, delta_x_1 };
+                task[i] = new Task<double>(() => Vich_integral(mas));
+                task[i].Start();
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                result = result + task[i].Result;
+            }
+
+            st_1.Stop();
+            Console.WriteLine("Total result with parallel (tasks) calculation = {0}", result);
+            Console.WriteLine("Execution time of the program with parallel calculation: {0}", st_1.Elapsed.TotalSeconds);
+
+            result = 0;
+
+            // Параллельное вычисление с использованием Parallel.For()
+            Stopwatch st_2 = new Stopwatch();
+            st_2.Start();
+
+            Parallel.For(0, n, i =>
+           {
+               double[] mas = new double[3];
+               mas[0] = a + i * step;
+               mas[1] = a + (i + 1) * step;
+               mas[2] = delta_x;
+               result = result + Vich_integral(mas);
+           });
+
+            st_2.Stop();
+            Console.WriteLine("Total result with Parallel.For() calculation = {0}", result);
+            Console.WriteLine("Execution time of the program with parallel calculation: {0}", st_2.Elapsed.TotalSeconds);
+
+            result = 0;
+
+            // Последовательное вычисление
+            Stopwatch st_3 = new Stopwatch();
+            st_3.Start();
+
+            for (int i = 0; i < n; i++)
+            {
+                double[] mas = new double[3];
+                mas[0] = a + i * step;
+                mas[1] = a + (i + 1) * step;
+                mas[2] = delta_x;
+                result = result + Vich_integral(mas);
+            }
+
+            st_3.Stop();
+            Console.WriteLine("Total result with serial calculation = {0}", result);
+            Console.WriteLine("Execution time of the program with serial calculation: {0}", st_3.Elapsed.TotalSeconds);
+        }
+        // Находим сумму площадей каждого прямоугольника методом средних прямоугольников
+        static double Vich_integral(double[] mas_)
+        {
+            double re_ = 0.0;
+            double a_ = mas_[0];
+            double b_ = mas_[1];
+            double delta_x_ = mas_[2];
+
+            for (double j_ = a_; j_ < b_; j_ = j_ + delta_x_)
+            {
+                re_ = re_ + delta_x_ * (1 / (1 + (j_ + delta_x_ / 2)));
+            }
+            //Console.WriteLine("a = {0}, b = {1}, delta_x = {2}", a_, b_, delta_x_);
+            //Console.WriteLine("The integral is: {0}", re_);
+            return re_;
+        }
+    }
+}
