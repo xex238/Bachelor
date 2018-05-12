@@ -1,0 +1,121 @@
+using System;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Globalization;
+using System.Diagnostics;
+
+namespace Task_3
+{
+    class Program
+    {
+        static void Sum_line(double[,] x1, int length)
+        {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            double[] sum_line = new double[length];
+
+            for (int i=0; i<length; i++)
+            {
+                sum_line[i] = 0;
+            }
+
+            Parallel.For(0, length, i =>
+            //for (int i = 0; i < length; i++)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    sum_line[i] += x1[i, j];
+                }
+            });
+
+            string result_string = "";
+            for (int i=0; i<length; i++)
+            {
+                result_string = result_string + sum_line[i].ToString() + ",";
+            }
+
+            File.WriteAllText("sum_line.csv", result_string);
+            st.Stop();
+            Console.WriteLine("The summation is complete.");
+            Console.WriteLine("Total time is {0}", st.Elapsed.TotalSeconds);
+        }
+        static void Avg_line(double[,] x1, int length)
+        {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+            double[] avg_line = new double[length];
+
+            for (int i=0; i<length; i++)
+            {
+                avg_line[i] = 0;
+            }
+
+            Parallel.For(0, length, i =>
+            //for (int i=0; i<length; i++)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    avg_line[i] += x1[i, j];
+                }
+                avg_line[i] = avg_line[i] / length;
+            });
+
+            string result_string = "";
+            for (int i = 0; i < length; i++)
+            {
+                result_string = result_string + avg_line[i].ToString() + ",";
+            }
+
+            File.WriteAllText("avg_line.csv", result_string);
+            st.Stop();
+            Console.WriteLine("The average value of each line was found successfully.");
+            Console.WriteLine("Total time is {0}", st.Elapsed.TotalSeconds);
+        }
+        static void Main(string[] args)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
+            var lines = File.ReadAllLines("matrix.csv");
+            double[,] matrix = new double[lines.Length, lines.Length];
+            int i = 0;
+            foreach (string line in lines)
+            {
+                string[] line_s = line.Split(',');
+                int j = 0;
+                foreach (string str in line_s)
+                {
+                    matrix[i, j] = Double.Parse(str, CultureInfo.InvariantCulture);
+                    ++j;
+                }
+                ++i;
+            }
+
+            Console.WriteLine("What kind of operation you want to do with matrix?");
+            Console.WriteLine("Write 1 if you want to do Sum_line");
+            Console.WriteLine("Write 2 if you want to do Avg_line");
+
+            int pick_operation = int.Parse(Console.ReadLine());
+            while ((pick_operation != 1) && (pick_operation != 2))
+            {
+                Console.WriteLine("Write correct values");
+                pick_operation = int.Parse(Console.ReadLine());
+            }
+
+            if (pick_operation == 1)
+            {
+                // Выполняем суммирование строк матрицы в отдельном методе
+                Sum_line(matrix, lines.Length);
+            }
+            if (pick_operation == 2)
+            {
+                // Выполняем нахождение среднего значения каждой строки матрицы в отдельном методе
+                Avg_line(matrix, lines.Length);
+            }
+            //Console.ReadKey();
+        }
+    }
+}
