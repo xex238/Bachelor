@@ -14,30 +14,31 @@ public:
 	void Check_conditions_for_the_step_2(); // Проверка условий для перехода на второй этап
 
 	bool Step_2();
-	void Selection_for_Filling_output_step_2();
+	void Selection_for_filling_output_step_2();
 	void Check_cows_and_bulls_for_valid_values_step_2(); // Проверка ограничений после ввода быков и коров
 	void Processing_cows_and_bulls_step_2(); // Обработка быков и коров на втором шаге
 	void Check_automatic_filling_cows_divided_in_two_parts(); // Проверяем условие на автозаполнение массива cows_divided_in_two_parts
 	void Check_conditions_for_the_step_3(); // Проверка условий для перехода на третий этап
+	void Actions_before_step_3(); // Необходимые действия до перехода на третий этап
 
 	bool Step_3();
+	void Check_cows_and_bulls_for_valid_values_step_3();
 
 	void Print_output(); // Вывод массива output на экран
 	void Filling_output(int x_left_part, int x_right_part); // Метод для заполнения массива output[i]
 	void Moving_array(int* arr, int& size);
 	void Check_cows_and_bulls_for_valid_values_level_1(); // Проверка ограничений после ввода быков и коров (самая простая)
+	int Return_count_of_tries();
 private:
 	int count_of_numbers{ 0 };
-
-	// bool** matrix_of_chance;
 
 	int* cows_divided_in2parts;
 	int* check_cow;
 	int* check_bull;
 	int* bad_numbers;
 	int* output;
-	// int* result;
-	// int* check_bulls_step_3;
+
+	int* result;
 
 	int size_cdi_part_1{ 0 };
 	int size_cdi_part_2{ 0 };
@@ -57,6 +58,8 @@ private:
 
 	int cows{ 0 };
 	int bulls{ 0 };
+
+	int remember_bulls{ 0 };
 
 	int sum_cows{ 0 };
 
