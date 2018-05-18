@@ -40,6 +40,12 @@ Cows_and_bulls::Cows_and_bulls(int count_of_numbers_)
 	{
 		cows_divided_in2parts[i] = -1;
 	}
+
+	result = new int[count_of_numbers];
+	for (int i = 0; i < count_of_numbers; i++)
+	{
+		result[i] = -1;
+	}
 }
 
 bool Cows_and_bulls::Pick_step()
@@ -49,11 +55,11 @@ bool Cows_and_bulls::Pick_step()
 	{
 		result = Step_1();
 	}
-	if (step == 2)
+	else if (step == 2)
 	{
 		result = Step_2();
 	}
-	if (step == 3)
+	else if (step == 3)
 	{
 		result = Step_3();
 	}
@@ -67,6 +73,7 @@ bool Cows_and_bulls::Step_1()
 
 	// Вывод массива output на экран
 	Print_output();
+
 	// Ввод коров и быков
 	cout << " ";
 	cin >> cows >> bulls;
@@ -84,26 +91,27 @@ bool Cows_and_bulls::Step_1()
 	count_of_tries++;
 
 	// Вывод вспомогательных значений на экран
-	for (int i = 0; i < count_of_numbers; i++)
-	{
-		cout << cows_divided_in2parts[i];
-	}
-	cout << endl;
-	for (int i = 0; i < size_cc; i++)
-	{
-		cout << check_cow[i];
-	}
-	cout << endl;
-	for (int i = 0; i < size_cb; i++)
-	{
-		cout << check_bull[i];
-	}
-	cout << endl;
-	for (int i = 0; i < size_bn; i++)
-	{
-		cout << bad_numbers[i];
-	}
-	cout << endl;
+	//for (int i = 0; i < count_of_numbers; i++)
+	//{
+	//	cout << cows_divided_in2parts[i];
+	//}
+	//cout << endl;
+	//for (int i = 0; i < size_cc; i++)
+	//{
+	//	cout << check_cow[i];
+	//}
+	//cout << endl;
+	//for (int i = 0; i < size_cb; i++)
+	//{
+	//	cout << check_bull[i];
+	//}
+	//cout << endl;
+	//for (int i = 0; i < size_bn; i++)
+	//{
+	//	cout << bad_numbers[i];
+	//}
+	//cout << endl;
+	//cout << "count of tries = " << count_of_tries << endl;
 	//cout << "size_cdi_part_1 = " << size_cdi_part_1 << endl;
 	//cout << "size_cdi_part_2 = " << size_cdi_part_2 << endl;
 	//cout << "size_cc = " << size_cc << endl;
@@ -117,14 +125,20 @@ bool Cows_and_bulls::Step_1()
 }
 void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_1()
 {
-	retry_1:
-	Check_cows_and_bulls_for_valid_values_level_1();
-	if ((size_cdi_part_1 + size_cdi_part_2 + size_cc / 2 + size_cb + cows > count_of_numbers) &&
-		(size_bn + size_cc / 2 + (2 - cows) > length_bn))
+	bool all_right = false;
+	while (!all_right)
 	{
-		cout << "You made a mistake. Write cows and bulls again" << endl;
-		cin >> cows >> bulls;
-		goto retry_1;
+		Check_cows_and_bulls_for_valid_values_level_1();
+		if ((size_cdi_part_1 + size_cdi_part_2 + size_cc / 2 + size_cb + cows > count_of_numbers) &&
+			(size_bn + size_cc / 2 + (2 - cows) > length_bn))
+		{
+			cout << "You made a mistake. Write cows and bulls again" << endl;
+			cin >> cows >> bulls;
+		}
+		else
+		{
+			all_right = true;
+		}
 	}
 }
 void Cows_and_bulls::Processing_cows_and_bulls_step_1()
@@ -179,6 +193,7 @@ void Cows_and_bulls::Check_conditions_for_the_step_2()
 		if (size_cdi_part_1 + size_cdi_part_2 == count_of_numbers)
 		{
 			step = 3;
+			Actions_before_step_3();
 		}
 		else
 		{
@@ -186,7 +201,6 @@ void Cows_and_bulls::Check_conditions_for_the_step_2()
 		}
 		for (int i = count_of_tries; i < 5; i++)
 		{
-			cout << "sgkjdghgdrfhhrkesfgifheru" << endl;
 			bad_numbers[size_bn] = i;
 			size_bn++;
 			bad_numbers[size_bn] = 9 - i;
@@ -198,7 +212,7 @@ void Cows_and_bulls::Check_conditions_for_the_step_2()
 bool Cows_and_bulls::Step_2()  
 {
 	// Заполнение output в зависимости от исходных параметров
-	Selection_for_Filling_output_step_2();
+	Selection_for_filling_output_step_2();
 
 	// Выводим на экран массив output
 	Print_output();
@@ -217,31 +231,32 @@ bool Cows_and_bulls::Step_2()
 	count_of_tries++;
 
 	// Вывод вспомогательных значений на экран
-	for (int i = 0; i < count_of_numbers; i++)
-	{
-		cout << cows_divided_in2parts[i];
-	}
-	cout << endl;
-	for (int i = 0; i < size_cc; i++)
-	{
-		cout << check_cow[i];
-	}
-	cout << endl;
-	for (int i = 0; i < size_cb; i++)
-	{
-		cout << check_bull[i];
-	}
-	cout << endl;
-	for (int i = 0; i < size_bn; i++)
-	{
-		cout << bad_numbers[i];
-	}
-	cout << endl;
+	//for (int i = 0; i < count_of_numbers; i++)
+	//{
+	//	cout << cows_divided_in2parts[i];
+	//}
+	//cout << endl;
+	//for (int i = 0; i < size_cc; i++)
+	//{
+	//	cout << check_cow[i];
+	//}
+	//cout << endl;
+	//for (int i = 0; i < size_cb; i++)
+	//{
+	//	cout << check_bull[i];
+	//}
+	//cout << endl;
+	//for (int i = 0; i < size_bn; i++)
+	//{
+	//	cout << bad_numbers[i];
+	//}
+	//cout << endl;
+	//cout << "count of tries = " << count_of_tries << endl;
 	//cout << "id_check = " << id_check << endl;
 	//cout << "size_cdi_part_1 = " << size_cdi_part_1 << endl;
 	//cout << "size_cdi_part_2 = " << size_cdi_part_2 << endl;
 	//cout << "size_cc = " << size_cc << endl;
-	cout << "size_cb = " << size_cb << endl;
+	//cout << "size_cb = " << size_cb << endl;
 	//cout << "size_bn = " << size_bn << endl;
 
 	// Проверяем условие на автозаполнение массива cows_divided_in_two_parts
@@ -252,7 +267,7 @@ bool Cows_and_bulls::Step_2()
 
 	return (bulls == count_of_numbers);
 }
-void Cows_and_bulls::Selection_for_Filling_output_step_2()
+void Cows_and_bulls::Selection_for_filling_output_step_2()
 {
 	if ((size_cc != 0) && (size_cb != 0))
 	{
@@ -612,7 +627,7 @@ void Cows_and_bulls::Processing_cows_and_bulls_step_2()
 }
 void Cows_and_bulls::Check_automatic_filling_cows_divided_in_two_parts()
 {
-	if (size_cb != 0)
+	while ((size_cb != 0) && ((length_cdi_part_1 - size_cdi_part_1 < 2) || (length_cdi_part_2 - size_cdi_part_2 < 2)))
 	{
 		if (length_cdi_part_1 - size_cdi_part_1 < 2)
 		{
@@ -620,6 +635,12 @@ void Cows_and_bulls::Check_automatic_filling_cows_divided_in_two_parts()
 			size_cdi_part_2++;
 			cows_divided_in2parts[count_of_numbers / 2 + size_cdi_part_2] = check_bull[1];
 			size_cdi_part_2++;
+			Moving_array(check_bull, size_cb);
+		}
+		if (size_cdi_part_1 + size_cdi_part_2 == count_of_numbers)
+		{
+			step = 3;
+			break;
 		}
 		if (length_cdi_part_2 - size_cdi_part_2 < 2)
 		{
@@ -627,10 +648,15 @@ void Cows_and_bulls::Check_automatic_filling_cows_divided_in_two_parts()
 			size_cdi_part_1++;
 			cows_divided_in2parts[size_cdi_part_1] = check_bull[1];
 			size_cdi_part_1++;
+			Moving_array(check_bull, size_cb);
 		}
-		Moving_array(check_bull, size_cb);
+		if (size_cdi_part_1 + size_cdi_part_2 == count_of_numbers)
+		{
+			step = 3;
+			break;
+		}
 	}
-	if (size_cc != 0)
+	while ((size_cc != 0) && ((length_cdi_part_1 - size_cdi_part_1 == 0) || (length_cdi_part_2 - size_cdi_part_2 == 0)))
 	{
 		if (length_cdi_part_1 - size_cdi_part_1 == 0)
 		{
@@ -638,6 +664,12 @@ void Cows_and_bulls::Check_automatic_filling_cows_divided_in_two_parts()
 			size_cdi_part_2++;
 			bad_numbers[size_bn] = check_cow[0];
 			size_bn++;
+			Moving_array(check_cow, size_cc);
+		}
+		if (size_cdi_part_1 + size_cdi_part_2 == count_of_numbers)
+		{
+			step = 3;
+			break;
 		}
 		if (length_cdi_part_2 - size_cdi_part_2 == 0)
 		{
@@ -645,41 +677,265 @@ void Cows_and_bulls::Check_automatic_filling_cows_divided_in_two_parts()
 			size_cdi_part_1++;
 			bad_numbers[size_bn] = check_cow[1];
 			size_bn++;
+			Moving_array(check_cow, size_cc);
 		}
-		Moving_array(check_cow, size_cc);
+		if (size_cdi_part_1 + size_cdi_part_2 == count_of_numbers)
+		{
+			step = 3;
+			break;
+		}
 	}
+	cout << "size_cdi_part_1 = " << size_cdi_part_1 << endl;
+	cout << "size_cdi_part_2 = " << size_cdi_part_2 << endl;
 }
 void Cows_and_bulls::Check_conditions_for_the_step_3()
 {
 	if (size_cdi_part_1 + size_cdi_part_2 == count_of_numbers)
 	{
 		step = 3;
+
+		for (int i = 0; i < count_of_numbers; i++)
+		{
+			output[i] = cows_divided_in2parts[i];
+		}
+		Print_output();
+
+		// Ввод коров и быков
+		cout << " ";
+		cin >> cows >> bulls;
+
+		Check_cows_and_bulls_for_valid_values_step_3();
+		remember_bulls = bulls;
+
+		count_of_tries++;
 	}
 }
-
-bool Cows_and_bulls::Step_3()
+void Cows_and_bulls::Actions_before_step_3()
 {
-	// Заполнение output в зависимости от исходных параметров
-
-	// Выводим на экран массив output
+	for (int i = 0; i < count_of_numbers; i++)
+	{
+		output[i] = cows_divided_in2parts[i];
+	}
 	Print_output();
 
 	// Ввод коров и быков
 	cout << " ";
 	cin >> cows >> bulls;
 
-	// Проверка коров и быков на допустимые значения
+	Check_cows_and_bulls_for_valid_values_step_3();
+	remember_bulls = bulls;
 
-	// Обработка значений
-
-	// Прибавляем номер попытки
 	count_of_tries++;
+}
 
-	// Проверяем условие на автозаполнение массива result
+bool Cows_and_bulls::Step_3()
+{
+	// Проверяем левую часть
+	for (int i = 0; i < count_of_numbers / 2; i++)
+	{
+		for (int j = 0; j < count_of_numbers / 2; j++)
+		{
+			if ((i != j) && (result[i] == -1) && (result[j] == -1))
+			{
+				swap(output[i], output[j]);
 
+				// Выводим на экран массив output
+				Print_output();
 
+				// Ввод быков и коров
+				cout << " ";
+				cin >> cows >> bulls;
 
-	return (bulls == count_of_numbers);
+				// Проверка коров и быков на допустимые значения
+				Check_cows_and_bulls_for_valid_values_step_3();
+
+				// Прибавляем номер попытки
+				count_of_tries++;
+
+				// Обработка быков
+				if (bulls - remember_bulls == 2)
+				{
+					result[i] = output[i];
+					result[j] = output[j];
+					remember_bulls = bulls;
+					break;
+				}
+				else if (bulls - remember_bulls == 1)
+				{ 
+					int temp = output[i];
+					output[i] = output[count_of_numbers / 2];
+					remember_bulls = bulls;
+
+					Print_output();
+
+					cout << " ";
+					cin >> cows >> bulls;
+
+					// Проверка на допустимые значения
+
+					output[i] = temp;
+					if (remember_bulls - bulls == 1)
+					{
+						result[i] = output[i];
+					}
+					else
+					{
+						result[j] = output[j];
+					}
+					count_of_tries++;
+					break;
+				}
+				else if (bulls - remember_bulls == 0)
+				{
+					swap(output[i], output[j]);
+					continue;
+				}
+				else if (bulls - remember_bulls == -1)
+				{
+					swap(output[i], output[j]);
+					int temp = output[i];
+					output[i] = output[count_of_numbers / 2];
+
+					Print_output();
+
+					cout << " ";
+					cin >> cows >> bulls;
+
+					// Проверка на допустимые значения
+
+					output[i] = temp;
+					if (remember_bulls - bulls == 1)
+					{
+						result[i] = output[i];
+					}
+					else
+					{
+						result[j] = output[j];
+					}
+					count_of_tries++;
+					break;
+				}
+				else if (bulls - remember_bulls == -2)
+				{
+					result[i] = output[j];
+					result[j] = output[i];
+					remember_bulls = bulls;
+					break;
+				}
+			}
+		}
+	}
+
+	// Если уже угадали число
+	if (bulls == count_of_numbers)
+	{
+		return true;
+	}
+
+	// Проверяем правую часть
+	for (int i = count_of_numbers / 2; i < count_of_numbers; i++)
+	{
+		for (int j = count_of_numbers / 2; j < count_of_numbers; j++)
+		{
+			if ((i != j) && (result[i] == -1) && (result[j] == -1))
+			{
+				swap(output[i], output[j]);
+				Print_output();
+
+				cout << " ";
+				cin >> cows >> bulls;
+
+				// Проверка коров и быков на допустимые значения
+				Check_cows_and_bulls_for_valid_values_step_3();
+
+				// Прибавляем номер попытки
+				count_of_tries++;
+
+				// Обработка быков
+				if (bulls - remember_bulls == 2)
+				{
+					result[i] = output[i];
+					result[j] = output[j];
+					remember_bulls = bulls;
+					break;
+				}
+				else if (bulls - remember_bulls == 1)
+				{
+					int temp = output[i];
+					output[i] = output[0];
+					remember_bulls = bulls;
+
+					Print_output();
+
+					cout << " ";
+					cin >> cows >> bulls;
+
+					// Проверка на допустимые значения
+
+					output[i] = temp;
+					if (remember_bulls - bulls == 1)
+					{
+						result[i] = output[i];
+					}
+					else
+					{
+						result[j] = output[j];
+					}
+					count_of_tries++;
+					break;
+				}
+				else if (bulls - remember_bulls == 0)
+				{
+					swap(output[i], output[j]);
+					continue;
+				}
+				else if (bulls - remember_bulls == -1)
+				{
+					swap(output[i], output[j]);
+					int temp = output[i];
+					output[i] = output[0];
+					remember_bulls = bulls;
+
+					Print_output();
+
+					cout << " ";
+					cin >> cows >> bulls;
+
+					// Проверка на допустимые значения
+
+					output[i] = temp;
+					if (remember_bulls - bulls == 1)
+					{
+						result[i] = output[i];
+					}
+					else
+					{
+						result[j] = output[j];
+					}
+					count_of_tries++;
+					break;
+				}
+				else if (bulls - remember_bulls == -2)
+				{
+					result[i] = output[j];
+					result[j] = output[i];
+					remember_bulls = bulls;
+					break;
+				}
+			}
+		}
+	}
+
+	return true;
+	//return (bulls == count_of_numbers);
+}
+void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_step_3()
+{
+	while ((cows != count_of_numbers) || (bulls < 0) || (bulls > count_of_numbers))
+	{
+		cout << "You made a mistake. Write cows and bulls again" << endl;
+		cin >> cows >> bulls;
+	}
 }
 
 void Cows_and_bulls::Print_output()
@@ -715,4 +971,8 @@ void Cows_and_bulls::Check_cows_and_bulls_for_valid_values_level_1()
 		cout << "You made a mistake. Please, write a correct values" << endl;
 		cin >> cows >> bulls;
 	}
+}
+int Cows_and_bulls::Return_count_of_tries()
+{
+	return count_of_tries;
 }
