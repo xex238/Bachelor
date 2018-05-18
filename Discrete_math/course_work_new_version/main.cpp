@@ -20,4 +20,7 @@ int main()
 	{
 
 	}
+	cout << "The computer was able to guess your number in " << cb.Return_count_of_tries() << " moves." << endl;
+
+	system("pause");
 }
