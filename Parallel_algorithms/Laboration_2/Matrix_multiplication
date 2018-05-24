@@ -1,0 +1,75 @@
+using System;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Globalization;
+using System.Diagnostics;
+
+namespace Matrix_multiplication
+{
+    class Program
+    {
+        public static void Multiplication(double[,] x1, int length)
+        {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            double[,] new_mas = new double[length, length];
+            double[,] new_mas_1 = new double[length, length];
+
+            /*for (int i=0; i < length; i++)*/ Parallel.For(0, length, (i) =>
+            {
+                for (int j = 0; j < length; j++) //Parallel.For(0, length, (j) =>
+                {
+                    for (int k = 0; k < length; k++) //Parallel.For(0, length, (k) =>
+                    {
+                        new_mas[i, j] = new_mas[i, j] + x1[i, k] * x1[k, j];
+                    }//);
+                }//);
+            });
+
+            Console.WriteLine("Execution time of the program: {0}", st.Elapsed.TotalSeconds);
+
+            //string result_string = "";
+            //for (int i=0; i<length; i++)
+            //{
+            //    for (int j=0; j<length; j++)
+            //    {
+            //        result_string = result_string + new_mas[i, j].ToString() + ",";
+            //    }
+            //}
+
+            //File.WriteAllText("result.csv", result_string);
+            Console.WriteLine("first string of the program");
+            for (int i=0; i<length; i++)
+            {
+                Console.WriteLine("{0},", new_mas[i, 0]);
+            }
+        }
+        static void Main(string[] args)
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
+            var lines = File.ReadAllLines("matrix.csv");
+            double[,] matrix = new double[lines.Length, lines.Length];
+            int i = 0;
+            foreach (string line in lines)
+            {
+                string[] line_s = line.Split(',');
+                int j = 0;
+                foreach (string str in line_s)
+                {
+                    matrix[i, j] = Double.Parse(str, CultureInfo.InvariantCulture);
+                    ++j;
+                }
+                ++i;
+            }
+
+            // Выполняем перемножение матриц в отдельном методе
+            Multiplication(matrix, lines.Length);
+            //Console.ReadKey();
+        }
+    }
+}
