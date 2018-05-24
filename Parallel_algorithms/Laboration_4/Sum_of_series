@@ -1,0 +1,91 @@
+#include <iostream>
+#include <cmath>
+#include <ctime>
+#include <omp.h>
+using namespace std;
+
+double Sum_of_the_series_serial(unsigned int alfa, unsigned int N)
+{
+	float sum{ 0 };
+	for (int i = 1; i <= N; i++)
+	{
+		sum += 1 / (float)(pow(i, alfa));
+	}
+	return sum;
+}
+
+double Sum_of_the_series_parallel(unsigned int alfa, unsigned int N, unsigned int count_of_tasks)
+{
+	float sum = 0;
+	int step = N / count_of_tasks;
+	int* arr = new int [count_of_tasks];
+	arr[0] = 1;
+	for (int i = 1; i < count_of_tasks; i += 1)
+	{
+		arr[i] = arr[i - 1] + step;
+	}
+#pragma omp for single task
+	{
+		for (int i = 0; i < count_of_tasks; i += 1)
+		{
+#pragma omp for
+			{
+				for (int j = arr[i]; j < arr[i] + step; j += 1)
+				{
+					sum += float(1 / (pow(j, alfa)));
+				}
+			}
+		}
+	}
+	for (int j = arr[count_of_tasks - 1] + step; j <= N; j += 1)
+	{
+		sum += float(1 / (pow(j, alfa)));
+	}
+	return sum;
+
+#pragma omp for single task
+	{
+		for (int i = 1; i <= N; i++)
+		{
+			sum += 1 / (pow(i, alfa));
+		}
+		return sum;
+	}
+}
+
+int main()
+{
+	int alfa{ 1 };
+	int N{ 1 };
+	int count_of_tasks{ 0 };
+	double sum{ 0 };
+	double start_time{ 0 };
+	double end_time{ 0 };
+	cout << "Write N. N is int and N > 0" << endl;
+	cin >> N;
+
+	cout << "Write alfa. Alfa is int and alfa > 0" << endl;
+	cin >> alfa;
+
+	cout << "Write count of tasks. Count of tasks is int and count of tasks > 0" << endl;
+	cin >> count_of_tasks;
+
+	// Последовательное вычисление
+	start_time = clock();
+	sum = Sum_of_the_series_serial(alfa, N);
+	end_time = clock();
+	cout << "Time taken in seconds with serial computing: " << (float)(end_time - start_time) / CLOCKS_PER_SEC << endl;
+	cout << "Sum = " << sum << endl;
+
+	start_time = clock();
+ //   #pragma omp parallel
+	//{
+	//	sum = Sum_of_the_series_serial(alfa, N);
+	//}
+	sum = Sum_of_the_series_parallel(alfa, N, count_of_tasks);
+	end_time = clock();
+	cout << "Time taken in millisecs with parallel computing: " << (float)(end_time - start_time) / CLOCKS_PER_SEC << endl;
+	cout << "Sum = " << sum << endl;
+
+	system("pause");
+}
