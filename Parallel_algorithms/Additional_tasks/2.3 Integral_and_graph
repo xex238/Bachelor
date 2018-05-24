@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace Computing_the_integral
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double b = 0.0; // b - точка конца интегрирования
+            double a = 0.0; // a - точка начала интегрирования
+            double delta_x = 0.0; // Шаг интегрирования на каждом отрезке
+            Console.WriteLine("Write a:");
+            a = double.Parse(Console.ReadLine());
+            Console.WriteLine("Write b:");
+            b = double.Parse(Console.ReadLine());
+            Console.WriteLine("Write delta_x:");
+            delta_x = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("result with 1 tasks: {0}", Vich_integral_with_tasks(1, a, b, delta_x, (b - a) / 1));
+            Console.WriteLine("result with 2 tasks: {0}", Vich_integral_with_tasks(2, a, b, delta_x, (b - a) / 2));
+            Console.WriteLine("result with 3 tasks: {0}", Vich_integral_with_tasks(3, a, b, delta_x, (b - a) / 3));
+            Console.WriteLine("result with 4 tasks: {0}", Vich_integral_with_tasks(4, a, b, delta_x, (b - a) / 4));
+            Console.WriteLine("result with 6 tasks: {0}", Vich_integral_with_tasks(6, a, b, delta_x, (b - a) / 6));
+            Console.WriteLine("result with 9 tasks: {0}", Vich_integral_with_tasks(9, a, b, delta_x, (b - a) / 9));
+            Console.WriteLine("result with 30 tasks: {0}", Vich_integral_with_tasks(30, a, b, delta_x, (b - a) / 30));
+        }
+        // Находим сумму площадей каждого прямоугольника методом средних прямоугольников
+        static double Vich_integral(double[] mas_)
+        {
+            double re_ = 0.0;
+            double a_ = mas_[0];
+            double b_ = mas_[1];
+            double delta_x_ = mas_[2];
+
+            for (double j_ = a_; j_ < b_; j_ = j_ + delta_x_)
+            {
+                re_ = re_ + delta_x_ * (1 / (1 + (j_ + delta_x_ / 2)));
+            }
+            //Console.WriteLine("a = {0}, b = {1}, delta_x = {2}", a_, b_, delta_x_);
+            //Console.WriteLine("The integral is: {0}", re_);
+            return re_;
+        }
+        static double Vich_integral_with_tasks(int count_of_tasks, double a, double b, double delta_x, double step)
+        {
+            Stopwatch st = new Stopwatch();
+            st.Start();
+
+            Task<double>[] task = new Task<double>[count_of_tasks];
+
+            for (int i = 0; i < count_of_tasks; i++)
+            {
+                double a_1 = a + i * step;
+                double b_1 = a + (i + 1) * step;
+                double delta_x_1 = delta_x;
+                double[] mas = new double[3] { a_1, b_1, delta_x_1 };
+                task[i] = new Task<double>(() => Vich_integral(mas));
+                task[i].Start();
+            }
+
+            double result = 0;
+
+            for (int i = 0; i < count_of_tasks; i++)
+            {
+                result = result + task[i].Result;
+            }
+
+            st.Stop();
+            Console.WriteLine("Execution time of the program: {0}", st.Elapsed.TotalSeconds);
+
+            return result;
+        }
+    }
+}
