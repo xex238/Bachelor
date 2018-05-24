@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Diagnostics;
+
+namespace Integral
+{
+    class Program
+    {
+        static int dots;
+        static double[] piForThread;
+        static int threads;
+
+        static void Main(string[] args)
+        {
+            Console.Write("Number of dots is  ");
+            dots = int.Parse(Console.ReadLine());
+
+            while (dots <= 0)
+            {
+                Console.WriteLine("Please, write positive number:");
+                dots = int.Parse(Console.ReadLine());
+            }
+
+            Console.Write("Number of threads is  ");
+            threads = Int32.Parse(Console.ReadLine());
+
+            while (threads <= 0)
+            {
+                Console.WriteLine("Please, write positive number:");
+                threads = int.Parse(Console.ReadLine());
+            }
+
+            piForThread = new Double[threads];
+
+            for (int i = 0; i < threads; i++)
+            {
+                 int ilocal = i;
+                 ThreadPool.QueueUserWorkItem(Calculate, ilocal);
+            }
+
+            Thread.Sleep(5000);
+            Console.WriteLine("Pi is equal to {0}", piForThread.Average());
+        }
+
+        static void Calculate(Object threadIdx)
+        {
+            int thread = (int)threadIdx;
+            int[] inCircleDots = new int[threads];
+            inCircleDots[thread] = 0;
+            double x, y;
+            Random rnd = new Random();
+
+            for (int i = 1; i <= dots; i++)
+            {
+                x = rnd.NextDouble();
+                y = rnd.NextDouble();
+
+                if (Math.Sqrt(x * x + y * y) < 1)
+                {
+                    inCircleDots[thread]++;
+                }
+            }
+
+            piForThread[thread] = 4.0 * inCircleDots[thread] / dots;
+        }
+    }
+}
