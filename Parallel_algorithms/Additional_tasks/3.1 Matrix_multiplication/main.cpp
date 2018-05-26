@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	// Считывание матрицы с файла
+	// Г‘Г·ГЁГІГ»ГўГ Г­ГЁГҐ Г¬Г ГІГ°ГЁГ¶Г» Г± ГґГ Г©Г«Г 
 	const string file_name = "matrix.csv";
 	bool result;
 
@@ -17,7 +17,7 @@ int main()
 		return 0;
 	}
 
-	// Считывание своей матрицы
+	// Г‘Г·ГЁГІГ»ГўГ Г­ГЁГҐ Г±ГўГ®ГҐГ© Г¬Г ГІГ°ГЁГ¶Г»
 	//int size{ 3 };
 	//double** mat = new double*[3];
 
@@ -35,11 +35,11 @@ int main()
 
 	//work_with_matrix work_2 = work_with_matrix(mat, size);
 
-	// Выполняем перемножение первой матрицы в отдельном методе
+	// Г‚Г»ГЇГ®Г«Г­ГїГҐГ¬ ГЇГҐГ°ГҐГ¬Г­Г®Г¦ГҐГ­ГЁГҐ ГЇГҐГ°ГўГ®Г© Г¬Г ГІГ°ГЁГ¶Г» Гў Г®ГІГ¤ГҐГ«ГјГ­Г®Г¬ Г¬ГҐГІГ®Г¤ГҐ
 	work_1.Matrix_multiplication_serial();
 	work_1.Matrix_multiplication_parallel();
 
-	// Выполняем перемножение второй матрицы в отдельном методе
+	// Г‚Г»ГЇГ®Г«Г­ГїГҐГ¬ ГЇГҐГ°ГҐГ¬Г­Г®Г¦ГҐГ­ГЁГҐ ГўГІГ®Г°Г®Г© Г¬Г ГІГ°ГЁГ¶Г» Гў Г®ГІГ¤ГҐГ«ГјГ­Г®Г¬ Г¬ГҐГІГ®Г¤ГҐ
 	//work_2.Write_all_matrix_into_console();
 	//work_2.Matrix_multiplication_serial();
 	//work_2.Matrix_multiplication_parallel();
