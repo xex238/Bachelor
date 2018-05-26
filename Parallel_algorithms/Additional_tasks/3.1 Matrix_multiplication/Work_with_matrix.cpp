@@ -162,7 +162,7 @@ void work_with_matrix::Write_all_matrix_into_console(double ** matrix)
 }
 void work_with_matrix::Write_first_string_into_console(double** matrix)
 {
-	// Вывод первой строки в консоль
+	// Г‚Г»ГўГ®Г¤ ГЇГҐГ°ГўГ®Г© Г±ГІГ°Г®ГЄГЁ Гў ГЄГ®Г­Г±Г®Г«Гј
 	cout << "first string of the program" << endl;
 	for (int i = 0; i < size; i++)
 	{
