@@ -1,0 +1,133 @@
+#include <iostream>
+#include <ctime>
+#include <omp.h>
+using namespace std;
+
+double Computing_the_square(double& a, double& b, double& step, double A1, double& B1, double& C1, double A2, double B2, double C2)
+{
+	double result{ 0.0 };
+	float begin_time{ 0.0 };
+	float end_time{ 0.0 };
+
+	begin_time = clock();
+
+#pragma omp parallel for
+	{
+		for (double i = a; i < b; i = i + step)
+		{
+			result += step * ((A1 * i * i + B1 * i + C1) - (A2 * i * i + B2 * i + C2));
+		}
+	}
+
+	end_time = clock();
+
+	cout << "Total time of the computing is " << (end_time - begin_time) / CLOCKS_PER_SEC << " seconds" << endl;
+	return result;
+}
+
+int main()
+{
+	// Коэффициенты
+	double A1{ 0.0 };
+	double A2{ 0.0 };
+	double B1{ 0.0 };
+	double B2{ 0.0 };
+	double C1{ 0.0 };
+	double C2{ 0.0 };
+
+	// Шаг
+	double step{ 0.0 };
+
+	// Критические точки
+	double point_1{ 0.0 };
+	double point_2{ 0.0 };
+	double point_3{ 0.0 };
+
+	// Две площади под прямыми
+	double result_1{ 0.0 };
+	double result_2{ 0.0 };
+
+	// Результат
+	double result{ 0.0 };
+
+	cout << "Write A1:" << endl;
+	cin >> A1;
+
+	cout << "Write A2:" << endl;
+	cin >> A2;
+
+	while (A1 * A2 > 0)
+	{
+		cout << "O, bro, that's not right. Write it again" << endl;
+		cin >> A1;
+		cin >> A2;
+	}
+
+	cout << "Write B1:" << endl;
+	cin >> B1;
+
+	cout << "Write B2:" << endl;
+	cin >> B2;
+
+	cout << "Write C1:" << endl;
+	cin >> C1;
+
+	cout << "Write C2:" << endl;
+	cin >> C2;
+
+	cout << "Write step:" << endl;
+	cin >> step;
+
+	double helper{ 0.0 };
+	helper = (B1 - B2)*(B1 - B2) - 4 * (A1 - A2)*(C1 - C2);
+
+	if (A1 == A2)
+	{
+		point_1 = -C1 / B1;
+		point_2 = -C2 / B2;
+		point_3 = (C2 - C1) / (B1 - B2);
+
+		if ((point_3 <= point_1) && (point_3 <= point_2))
+		{
+			result_1 = Computing_the_square(point_3, point_1, step, 0, B1, C1, 0, 0, 0);
+			result_2 = Computing_the_square(point_3, point_2, step, 0, B2, C2, 0, 0, 0);
+			result = abs(result_1 - result_2);
+		}
+		else if ((point_3 >= point_1) && (point_3 >= point_2))
+		{
+			result_1 = Computing_the_square(point_1, point_3, step, 0, B1, C1, 0, 0, 0);
+			result_2 = Computing_the_square(point_2, point_3, step, 0, B2, C2, 0, 0, 0);
+			result = abs(result_1 - result_2);
+		}
+		else
+		{
+			if (point_1 >= point_2)
+			{
+				result_1 = Computing_the_square(point_2, point_3, step, 0, B2, C2, 0, 0, 0);
+				result_2 = Computing_the_square(point_3, point_1, step, 0, B1, C1, 0, 0, 0);
+			}
+			if (point_1 < point_2)
+			{
+				result_1 = Computing_the_square(point_1, point_3, step, 0, B1, C1, 0, 0, 0);
+				result_2 = Computing_the_square(point_3, point_2, step, 0, B2, C2, 0, 0, 0);
+			}
+			result = abs(result_1 + result_2);
+		}
+	}
+	else if (helper >= 0)
+	{
+		point_1 = ((B2 - B1) - sqrt(helper)) / (2 * (A1 - A2));
+		point_2 = ((B2 - B1) + sqrt(helper)) / (2 * (A1 - A2));
+		result = abs(Computing_the_square(point_1, point_2, step, A1, B1, C1, A2, B2, C2));
+	}
+	else
+	{
+		cout << "Oh, bro, I can't computing this square" << endl;
+		system("pause");
+		return 0;
+	}
+
+	cout << "Result square = " << result << endl;
+
+	system("pause");
+}
