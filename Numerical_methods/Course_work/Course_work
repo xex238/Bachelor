@@ -1,0 +1,526 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Version_1._0
+{
+    class Program
+    {
+        // Обработка матрицы
+        static float[,] Read_matrix(string filename)
+        {
+            StreamReader file = new StreamReader(filename);
+            string s = file.ReadToEnd();
+            file.Close();
+            string[] line = s.Split('\n');
+            string[] column = line[0].Split(' ');
+            float[,] a = new float[line.Length, column.Length];
+            float t = 0;
+            for (int i = 0; i < line.Length; i++)
+            {
+                column = line[i].Split(' ');
+                for (int j = 0; j < column.Length; j++)
+                {
+                    t = Convert.ToSingle(column[j]);
+                    a[i, j] = t;
+                }
+            }
+
+            return a;
+        }
+        // Проверка возможности открыть файл
+        static bool Try_open_file(string filename)
+        {
+            try
+            {
+                float[,] myArray = Read_matrix(filename);
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Файл не найден");
+                return false;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Неверное значение данных");
+                return false;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Выход за границы массива");
+                return false;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Что-то пошло не так :с");
+                return false;
+            }
+            return true;
+        }
+        // Вывод матрицы на экран
+        static void Print_matrix(float[,] a, string s)
+        {
+            Console.WriteLine(s);
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    Console.Write("{0:N3} ", a[i, j]);
+                }
+                Console.WriteLine();
+            }
+        }
+        // Вывод вектора на экран
+        static void Print_vector(float[] a, string s)
+        {
+            Console.WriteLine(s);
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write("{0:N3} ", a[i]);
+            }
+            Console.WriteLine();
+        }
+        static void Print_vector(double[] a, string s)
+        {
+            Console.WriteLine(s);
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write("{0:N3} ", a[i]);
+            }
+            Console.WriteLine();
+        }
+
+        // Вычисление значения от полинома в точке
+        static float Counting_value(float[] polynom, float x)
+        {
+            float result = 0;
+            for (int i = 0; i < polynom.Length; i++)
+            {
+                result += polynom[i] * (float)Math.Pow(x, i);
+            }
+            //Console.WriteLine("В точке {0} значение полинома равно {1}", x, result);
+            return result;
+        }
+        // Умножение матрицы на вектор
+        static float[] Multiplication_matrix_on_vector(float[,] A1, float[] A2)
+        {
+            float[] result_matrix = new float[A1.GetLength(0)];
+
+            for (int i = 0; i < result_matrix.GetLength(0); i++)
+            {
+                result_matrix[i] = 0;
+            }
+
+            for (int i = 0; i < result_matrix.GetLength(0); i++)
+            {
+                for (int k = 0; k < A1.GetLength(0); k++)
+                {
+                    result_matrix[i] = result_matrix[i] + A1[i, k] * A2[k];
+                }
+            }
+
+            return result_matrix;
+        }
+        // Умножение вектора на число
+        static float[] Multiplication_vector_on_number(float[] vector, float number)
+        {
+            float[] result = new float[vector.Length];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = vector[i] * number;
+            }
+            return result;
+        }
+        // Суммирование векторов
+        static float[] Sum_of_vectors(float[] vector_1, float[] vector_2)
+        {
+            float[] result = new float[vector_1.Length];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = vector_1[i] + vector_2[i];
+            }
+            return result;
+        }
+        // Нормирование векторов
+        static float[,] Normalization_of_vectors(float[,] matrix)
+        {
+            float length = 0;
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                length = 0;
+                for (int j = 0; j < matrix.GetLength(0); j++)
+                {
+                    length += matrix[j, i] * matrix[j, i];
+                }
+                length = (float)Math.Sqrt(length);
+                for (int j = 0; j < matrix.GetLength(0); j++)
+                {
+                    matrix[j, i] /= length;
+                }
+            }
+            return matrix;
+        }
+
+        // Реализация метода Крылова
+        static void Krilov_method(string file_name_matrix)
+        {
+            Console.WriteLine("Нахождение собственных значений и собственных векторов методом Крылова");
+            if (Try_open_file(file_name_matrix))
+            {
+                // Получаем исходную матрицу из файла
+                float[,] A = Read_matrix(file_name_matrix);
+                Print_matrix(A, "Это начальная матрица А:");
+
+                // Получаем характеристический полином
+                float[,] SLAY_matrix = new float[A.GetLength(0), A.GetLength(1)];
+                float[] polynom_vector = Search_own_values(A, ref SLAY_matrix);
+                float[] coefficients = new float[polynom_vector.Length - 2];
+                for (int i = 1; i < polynom_vector.Length - 1; i++)
+                {
+                    coefficients[i - 1] = -polynom_vector[polynom_vector.Length - 1 - i];
+                }
+                //Print_vector(polynom_vector, "Вектор с коэффициентами характеристического многочлена");
+                float[] own_values = Lobachevskiy_method(polynom_vector);
+                Print_vector(own_values, "Вектор с собственными значениями");
+                //Print_vector(polynom_vector, "Вектор с коэффициентами характеристического полинома (polynom_vector)");
+                //Print_vector(coefficients, "Коэффициенты");
+
+                float[,] matrix_of_own_vectors = Search_own_vectors(own_values, coefficients, SLAY_matrix);
+                Print_matrix(matrix_of_own_vectors, "Матрица со значениями собственных векторов");
+                matrix_of_own_vectors = Normalization_of_vectors(matrix_of_own_vectors);
+                Print_matrix(matrix_of_own_vectors, "Нормированная матрица со значениями собственных векторов");
+            }
+            else
+            {
+                Console.WriteLine("Упс, что-то пошло не так :c");
+                return;
+            }
+        }
+        // Реализация модифицированного метода Гаусса
+        static float[] Gayss_method(float[,] A, float[] b)
+        {
+            Console.WriteLine("Решение СЛАУ модифицированным методом Гаусса");
+            Console.WriteLine("Введите погрешность");
+            float e = float.Parse(Console.ReadLine());
+
+            int[] coefficients = new int[A.GetLength(0)];
+
+            for (int i = 0; i < coefficients.GetLength(0); i++)
+            {
+                coefficients[i] = i;
+            }
+
+            for (int step = 0; step < A.GetLength(0) - 1; step++)
+            {
+                //Console.WriteLine("Матрица до перестановки");
+                //Print_matrix(A, A.GetLength(0));
+
+                float max = A[step, step];
+                int i_max = step;
+                for (int i = step; i < A.GetLength(0); i++)
+                {
+                    if (Math.Abs(A[i, step]) != 0)
+                    {
+                        i_max = i;
+                        break;
+                    }
+                }
+
+                // Перестановка строк и столбцов
+                float helper = 0;
+
+                helper = b[step];
+                b[step] = b[i_max];
+                b[i_max] = helper;
+
+                if (i_max != step)
+                {
+                    for (int i = step; i < A.GetLength(0); i++)
+                    {
+                        helper = A[step, i];
+                        A[step, i] = A[i_max, i];
+                        A[i_max, i] = helper;
+                    }
+                }
+
+                // Итерации метода Гаусса
+                for (int i = step + 1; i < A.GetLength(0); i++)
+                {
+                    float important_number = -A[i, step] / A[step, step];
+                    for (int j = step; j < A.GetLength(1); j++)
+                    {
+                        A[i, j] = A[step, j] * important_number + A[i, j];
+                    }
+                    b[i] = b[step] * important_number + b[i];
+                }
+            }
+
+            //Console.WriteLine("Матрица после перестановок в методе Гаусса");
+            //Print_matrix(A, A.GetLength(0));
+
+            // Проверка определителя на равенство нулю, используя элементы главной диагонали
+            bool determinant = false;
+            for (int i = 0; i < A.GetLength(1); i++)
+            {
+                if (Math.Abs(A[i, i]) < e)
+                {
+                    determinant = true;
+                    break;
+                }
+            }
+
+            float[] result = new float[A.GetLength(1)];
+            for (int i = 0; i < A.GetLength(1); i++)
+            {
+                result[i] = 0;
+            }
+
+            if (!determinant)
+            {
+                // Поиск решения (вычисление "иксов")
+                for (int i = A.GetLength(1) - 1; i >= 0; i--)
+                {
+                    float sum = 0;
+                    for (int j = 0; j < A.GetLength(1); j++)
+                    {
+                        sum = sum + (A[i, j] * result[j]);
+                    }
+                    result[i] = (b[i] - sum) / A[i, i];
+                }
+
+                //Console.WriteLine("Ответ:");
+                //for (int i = 0; i < A.GetLength(0); i++)
+                //{
+                //    for (int j = 0; j < A.GetLength(0); j++)
+                //    {
+                //        if (coefficients[j] == i)
+                //        {
+                //            Console.WriteLine("x{0} = {1:N6} ", i + 1, result[j]);
+                //            break;
+                //        }
+                //    }
+                //}
+
+            }
+            else
+            {
+                Console.WriteLine("Определитель системы уравнений равен нулю. Решение системы невозможно");
+            }
+            return result;
+        }
+        // Реализация метода Лобачевского
+        static float[] Lobachevskiy_method(float[] polynom)
+        {
+            Console.WriteLine("Нахождение корней полинома методом Лобачевского");
+
+            float e = 0;
+            Console.WriteLine("Задайте точность нахождения корней уравнения в метода Лобачевского");
+            e = float.Parse(Console.ReadLine());
+
+            double[] helper_polynom_old = new double[polynom.Length];
+            double[] helper_polynom_new = new double[polynom.Length];
+            float root_1 = 0; // Первый из корней для проверки окончания итераций
+            float root_2 = 0; // Второй из корней для проверки окончания итераций
+            float helper_root = 0;
+            float F_root_1 = 0;
+            float F_root_2 = 0;
+            int iteration = 0;
+            for (int i = 0; i < polynom.Length; i++)
+            {
+                helper_polynom_old[i] = polynom[polynom.Length - 1 - i];
+                //helper_polynom_old[i] = polynom[i];
+                helper_polynom_new[i] = 0;
+            }
+            do
+            {
+                iteration++;
+                //Console.WriteLine("Итерация №{0}", iteration);
+                //Print_vector(helper_polynom_old, "helper_polynom_old перед началом итерации");
+
+                for (int i = 0; i < helper_polynom_new.Length; i++)
+                {
+                    helper_polynom_new[i] = helper_polynom_old[i] * helper_polynom_old[i];
+                }
+
+                for (int i = 1; i < helper_polynom_new.Length - 1; i++)
+                {
+                    for (int j = 1; j < helper_polynom_new.Length; j++)
+                    {
+                        try
+                        {
+                            helper_polynom_new[i] += Math.Pow((-1), j) * 2 * helper_polynom_old[i - j] * helper_polynom_old[i + j];
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+
+                helper_polynom_old = (double[])helper_polynom_new.Clone();
+                //Print_vector(helper_polynom_old, "helper_polynom_old после итерации");
+                //Print_vector(helper_polynom_new, "helper_polynom_new после итерации");
+
+                for (int i = 1; i < polynom.Length; i++)
+                {
+                    root_1 = (float)(helper_polynom_new[i] / helper_polynom_new[i - 1]);
+                    root_2 = (float)(helper_polynom_new[i] / helper_polynom_new[i - 1]);
+                    for (int j = 0; j < iteration; j++)
+                    {
+                        root_1 = (float)Math.Sqrt(root_1);
+                        root_2 = (float)Math.Sqrt(root_2);
+                    }
+                    root_2 = -root_2;
+                    F_root_1 = Counting_value(polynom, root_1);
+                    F_root_2 = Counting_value(polynom, root_2);
+                    if (i == 1)
+                    {
+                        helper_root = Math.Min(Math.Abs(F_root_1), Math.Abs(F_root_2));
+                    }
+                    else
+                    {
+                        helper_root = Math.Max(helper_root, Math.Min(Math.Abs(F_root_1), Math.Abs(F_root_2)));
+                    }
+                }
+                //Print_vector(helper_polynom_new, "helper_polynom_new = ");
+                //Console.WriteLine();
+            } while (helper_root > e);
+            Console.WriteLine("Решение найдено за {0} итераций", iteration);
+            float[] roots = new float[polynom.Length - 1];
+            for (int i = 1; i < polynom.Length; i++)
+            {
+                root_1 = (float)Math.Pow(helper_polynom_new[i] / helper_polynom_new[i - 1], 1 / Math.Pow(2, iteration));
+                root_2 = (float)-Math.Pow(helper_polynom_new[i] / helper_polynom_new[i - 1], 1 / Math.Pow(2, iteration));
+                F_root_1 = Counting_value(polynom, root_1);
+                F_root_2 = Counting_value(polynom, root_2);
+                if (Math.Abs(F_root_1)<Math.Abs(F_root_2))
+                {
+                    roots[i - 1] = root_1;
+                }
+                else
+                {
+                    roots[i - 1] = root_2;
+                }
+            }
+            //Print_vector(roots, "Корни полинома");
+            return roots;
+        }
+        // Поиск собственных значений
+        static float[] Search_own_values(float[,] A, ref float[,] SLAY_matrix)
+        {
+            float[,] helper_matrix = new float[A.GetLength(0), A.GetLength(1) + 1];
+            float[] helper_vector = new float[A.GetLength(0)];
+
+            for (int i = 0; i < helper_matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < helper_matrix.GetLength(1); j++)
+                {
+                    helper_matrix[i, j] = 0;
+                }
+                helper_vector[i] = 0;
+            }
+            helper_matrix[0, 0] = 1;
+
+            //Print_matrix(helper_matrix, "Вывод вспомогательной матрицы на экран");
+
+            for (int i = 1; i < helper_matrix.GetLength(1); i++)
+            {
+                for (int j = 0; j < helper_matrix.GetLength(0); j++)
+                {
+                    helper_vector[j] = helper_matrix[j, i - 1];
+                }
+
+                helper_vector = Multiplication_matrix_on_vector(A, helper_vector);
+
+                for (int j = 0; j < helper_matrix.GetLength(0); j++)
+                {
+                    helper_matrix[j, i] = helper_vector[j];
+                }
+            }
+
+            //Print_matrix(helper_matrix, "Вывод вспомогательной матрицы после преобразований на экран");
+
+            float[] SLAY_vector = new float[A.GetLength(0)];
+
+            for (int i = 0; i < SLAY_matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < SLAY_matrix.GetLength(1); j++)
+                {
+                    SLAY_matrix[i, j] = helper_matrix[i, j];
+                }
+            }
+
+            for (int i = 0; i < helper_matrix.GetLength(0); i++)
+            {
+                SLAY_vector[i] = helper_matrix[i, helper_matrix.GetLength(1) - 1];
+            }
+
+            //Print_matrix(SLAY_matrix, "SLAY_matrix = ");
+            //Print_vector(SLAY_vector, "SLAY_vector = ");
+            float[,] SLAY_matrix_copy = (float[,])SLAY_matrix.Clone();
+
+            helper_vector = Gayss_method(SLAY_matrix_copy, SLAY_vector);
+            //Print_vector(helper_vector, "Результат работы метода Гаусса");
+
+            float[] polynom_vector = new float[helper_vector.Length + 1];
+            polynom_vector[polynom_vector.Length - 1] = 1;
+            for (int i = 0; i < polynom_vector.Length - 1; i++)
+            {
+                polynom_vector[i] = -helper_vector[i];
+            }
+
+            //Print_vector(polynom_vector, "Вектор с коэффициентами полинома");
+            return polynom_vector;
+        }
+        // Поиск собственных векторов
+        static float[,] Search_own_vectors(float[] own_values, float[] coefficients, float[,] SLAY_matrix)
+        {
+            float[,] matrix_of_own_vectors = new float[own_values.Length, own_values.Length];
+            float[] q = new float[own_values.Length];
+            float[] own_vector = new float[own_values.Length];
+            float[] helper_vector = new float[own_values.Length];
+
+            for (int i=0; i<own_values.Length; i++)
+            {
+                for (int j=0; j<own_values.Length; j++)
+                {
+                    matrix_of_own_vectors[i, j] = 0;
+                }
+                q[i] = 0;
+            }
+
+            for (int i = 0; i < own_values.Length; i++)
+            {
+                for (int j = 0; j < own_vector.Length; j++)
+                {
+                    own_vector[j] = SLAY_matrix[j, SLAY_matrix.GetLength(1) - 1];
+                    helper_vector[j] = 0;
+                }
+                q[0] = 1;
+                for (int j = 1; j < q.Length; j++)
+                {
+                    q[j] = own_values[i] * q[j - 1] - coefficients[j - 1];
+                    for (int k = 0; k < own_vector.Length; k++)
+                    {
+                        helper_vector[k] = SLAY_matrix[k, SLAY_matrix.GetLength(1) - j - 1];
+                    }
+                    helper_vector = Multiplication_vector_on_number(helper_vector, q[j]);
+                    own_vector = Sum_of_vectors(own_vector, helper_vector);
+                }
+                for (int j = 0; j < matrix_of_own_vectors.GetLength(0); j++)
+                {
+                    matrix_of_own_vectors[j, i] = own_vector[j];
+                }
+            }
+            return matrix_of_own_vectors;
+        }
+        static void Main(string[] args)
+        {
+            //Krilov_method("new_matrix.txt");
+            Krilov_method("good_matrix.txt");
+        }
+    }
+}
