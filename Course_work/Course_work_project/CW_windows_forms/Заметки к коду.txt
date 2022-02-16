@@ -1,0 +1,8 @@
+В User_form (designer) необходимо добавить 2 события:
+type_of_places_context_menu_strip.ItemClicked
+choose_class_context_menu_strip.ItemClicked
+Код события находится в классе User_form
+
+В Admin_form (designer) необходимо добавить 1 события:
+context_menu_strip.ItemClicked
+Код события находится в классе Admin_form
