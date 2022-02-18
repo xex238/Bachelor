@@ -1,0 +1,56 @@
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe.config
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.pdb
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csprojResolveAssemblyReference.cache
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.g.cs
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\App.g.cs
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.cache
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.lref
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.baml
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.g.resources
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.Properties.Resources.resources
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csproj.GenerateResource.Cache
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.exe
+C:\Users\st\Desktop\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.pdb
+F:\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe.config
+F:\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe
+F:\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.pdb
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csprojAssemblyReference.cache
+F:\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.g.cs
+F:\WpfApplication3\WpfApplication3\obj\Debug\App.g.cs
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.cache
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.lref
+F:\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.baml
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.g.resources
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.Properties.Resources.resources
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csproj.GenerateResource.cache
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.exe
+F:\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.pdb
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe.config
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.pdb
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csprojAssemblyReference.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.g.cs
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\App.g.cs
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.lref
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.baml
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.g.resources
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.Properties.Resources.resources
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csproj.GenerateResource.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.exe
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.pdb
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe.config
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.pdb
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csprojAssemblyReference.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.g.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\App.g.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3_MarkupCompile.lref
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\MainWindow.baml
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.g.resources
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.Properties.Resources.resources
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.csproj.GenerateResource.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.exe
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\WpfApplication3\WpfApplication3\obj\Debug\WpfApplication3.pdb

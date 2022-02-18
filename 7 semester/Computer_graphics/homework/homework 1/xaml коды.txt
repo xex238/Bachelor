@@ -1,0 +1,118 @@
+// Текущие коды
+    <DocumentViewer x:Name="my_document_viewer"/>
+    <FlowDocumentScrollViewer x:Name="my_flow_document_scroll_viewer"/> // Ничего особенного не произошло
+    <FlowDocumentPageViewer x:Name="my_flow_document_page_viewer"/>
+    <FlowDocumentReader x:Name="my_flow_document_reader"/> // Появляется окно
+
+// Используемый код (работает)
+    <FlowDocumentScrollViewer x:Name="my_flow_document_scroll_viewer">
+        
+    </FlowDocumentScrollViewer>
+
+// Дополнительные коды (не работает)
+    <DocumentViewer x:Name="my_document_viewer">
+        
+    </DocumentViewer>
+
+// Дополнительные коды (работает)
+    <FlowDocumentPageViewer x:Name="my_flow_document_page_viewer">
+        
+    </FlowDocumentPageViewer>
+
+// Дополнительные коды (работает)
+    <FlowDocumentReader x:Name="my_flow_document_reader">
+        
+    </FlowDocumentReader>
+
+// Небольшой рабочий текст кода
+        <FlowDocument>
+            <Paragraph>Hello world!</Paragraph>
+        </FlowDocument>
+
+// Код с элементом Menu
+        <Menu Name="my_menu" Height="25" VerticalAlignment="Top">
+            <MenuItem Header="Файл" Click="MenuItem_Click">
+                <MenuItem Header="Открыть">
+                    
+                </MenuItem>
+                <MenuItem Header="Выйти">
+                    
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                
+            </MenuItem>
+        </Menu>
+
+// FlowDocumentScrollViewer
+    <FlowDocumentScrollViewer>
+        <FlowDocument>
+            <Paragraph>Hello, world!</Paragraph>
+            <Paragraph>Это первый абзац</Paragraph>
+            <Paragraph>
+                <Run>Hello, world!</Run>
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+
+// Списки List
+            <List>
+                <ListItem>
+                    <Paragraph>C#</Paragraph>
+                </ListItem>
+                <ListItem>
+                    <Paragraph>C++</Paragraph>
+                </ListItem>
+                <ListItem>
+                    <Paragraph>Perl</Paragraph>
+                </ListItem>
+                <ListItem>
+                    <Paragraph>PHP</Paragraph>
+                </ListItem>
+            </List>
+
+            <Paragraph>Второй список</Paragraph>
+            <List MarkerStyle="Decimal">
+                <ListItem>
+                    <Paragraph>Основы работы</Paragraph>
+                </ListItem>
+                <ListItem>
+                    <Paragraph>Практическое руководство</Paragraph>
+                </ListItem>
+            </List>
+
+// Работа с таблицами
+            <Table>
+                <Table.Columns>
+                    <TableColumn Width="2*"></TableColumn>
+                    <TableColumn Width="*"></TableColumn>
+                </Table.Columns>
+                <TableRowGroup>
+                    <TableRow FontWeight="Bold">
+                        <TableCell>
+                            <Paragraph>MarkerStyle</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>Вид</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph Margin="0, 10, 0, 0">Disk</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <List MarkerStyle="Disc" Margin="0, 10, 0, 0">
+                                
+                            </List>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+            </Table>
+
+// Секции
+            <Section FontFamily="Calibri" Background="LightBlue">
+                <Paragraph>Hello, world!</Paragraph>
+                <Paragraph>Это первый абзац</Paragraph>
+                <Paragraph>Языки программирования</Paragraph>
+            </Section>
+

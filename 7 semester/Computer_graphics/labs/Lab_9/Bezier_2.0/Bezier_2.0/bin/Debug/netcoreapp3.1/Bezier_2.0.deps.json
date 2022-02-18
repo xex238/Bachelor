@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Bezier_2.0/1.0.0": {
+        "runtime": {
+          "Bezier_2.0.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bezier_2.0/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

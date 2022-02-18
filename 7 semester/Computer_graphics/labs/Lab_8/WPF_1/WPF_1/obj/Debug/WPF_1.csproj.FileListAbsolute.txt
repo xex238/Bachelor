@@ -1,0 +1,14 @@
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\bin\Debug\WPF_1.exe.config
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\bin\Debug\WPF_1.exe
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\bin\Debug\WPF_1.pdb
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1.csprojAssemblyReference.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\MainWindow.g.cs
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\App.g.cs
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1_MarkupCompile.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1_MarkupCompile.lref
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\MainWindow.baml
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1.g.resources
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1.Properties.Resources.resources
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1.csproj.GenerateResource.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1.exe
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №8. Работа с WPF\WPF_1\WPF_1\obj\Debug\WPF_1.pdb

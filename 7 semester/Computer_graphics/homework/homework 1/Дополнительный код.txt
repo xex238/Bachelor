@@ -1,0 +1,356 @@
+        string function = "";
+
+        public MainWindow(string f)
+        {
+            InitializeComponent();
+            function = f;
+
+            document_reader.Name = "my_flow_document_reader";
+            my_grid.Children.Add(document_reader);
+
+            // Сделать главное меню.
+            Menu mainMenu = new Menu();
+            my_grid.Children.Add(mainMenu);
+            mainMenu.HorizontalAlignment = HorizontalAlignment.Stretch;
+            mainMenu.VerticalAlignment = VerticalAlignment.Top;
+
+            // Создаем меню «Файл».
+            MenuItem fileMenuItem = new MenuItem();
+            fileMenuItem.Header = "Файл";
+            mainMenu.Items.Add(fileMenuItem);
+
+            // Создаем открытый элемент меню «Файл».
+            MenuItem openMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(openMenuItem);
+            openMenuItem.Header = "Открыть";
+            openMenuItem.Click += openMenuItem_Click;
+
+            // Дайте открытому элементу всплывающую подсказку.
+            ToolTip openToolTip = new ToolTip();
+            openMenuItem.ToolTip = openToolTip;
+            openToolTip.Content = "Открыть новый файл";
+
+            // Создаём элемент меню "Сохранить"
+            MenuItem saveMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(saveMenuItem);
+            saveMenuItem.Header = "Сохранить";
+            saveMenuItem.Click += saveMenuItem_Click;
+
+            ToolTip saveToolTip = new ToolTip();
+            saveMenuItem.ToolTip = saveToolTip;
+            saveToolTip.Content = "Сохранить текущий файл";
+
+            // Сделайте пункт выхода из меню «Файл».
+            MenuItem exitMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(exitMenuItem);
+            exitMenuItem.Header = "Выход";
+            exitMenuItem.Click += exitMenuItem_Click;
+
+            //// Используется для изменения размера
+            //Thickness my_thickness = new Thickness();
+            //my_thickness.Left = 50;
+            //my_thickness.Right = 100;
+            //my_thickness.Top = 50;
+            //my_thickness.Bottom = 100;
+
+            // Дайте элементу Exit всплывающую подсказку.
+            ToolTip exitToolTip = new ToolTip();
+            exitToolTip.Content = "Выйти из программы";
+            //exitToolTip.Margin = my_thickness;
+            exitMenuItem.ToolTip = exitToolTip;
+        }
+
+        // Попытка создания первого документа
+        public void My_window(object sender, RoutedEventArgs e)
+        {
+            //XpsDocument doc = new XpsDocument("my_file.xps", FileAccess.Read);
+
+            //docViewer.Document 
+
+            // Начало программного кода
+            //Run run_First = new Run();
+            run_First.Text = "Привет всем от ";
+
+            // Создание жирного текста
+            //Bold bold = new Bold();
+            //Run run_bold = new Run();
+            run_bold.Text = "динамически генерируемых";
+            bold.Inlines.Add(run_bold);
+
+            // Создание последней части фразы
+            //Run run_last = new Run();
+            run_last.Text = " документов";
+
+            // Добавление трёх частей фразы в абзац по порядку
+            //Paragraph paragraph = new Paragraph();
+            paragraph.Inlines.Add(run_First);
+            paragraph.Inlines.Add(bold);
+            paragraph.Inlines.Add(run_last);
+
+            // Создание документа и добавление в него абзаца
+            //FlowDocument document = new FlowDocument();
+            document.Blocks.Add(paragraph);
+
+            // Вывод документа
+            //my_document_viewer.Document = document;
+        }
+
+
+// Main.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+// Подключенные библиотеки
+using System.Windows.Xps.Packaging;
+using System.Windows.Markup;
+using System.IO;
+
+namespace Homework
+{
+    public class Main
+    {
+        MainWindow main_window = new MainWindow("window_1");
+        Work_with_text_window text_window = new Work_with_text_window();
+
+        Main()
+        {
+            text_window.ShowDialog();
+        }
+    }
+}
+
+
+        public void Choose_function(object sender, RoutedEventArgs e)
+        {
+            if(function == "window_1")
+            {
+                My_window_1(sender, e);
+            }
+            if(function == "window_2")
+            {
+                My_window_2(sender, e);
+            }
+            if(function == "window_3")
+            {
+                My_window_3(sender, e);
+            }
+            if(function == "window_4")
+            {
+                My_window_4(sender, e);
+            }
+        }
+
+        public void Initialization(object sender, RoutedEventArgs e)
+        {
+            InitializeComponent();
+
+            myFlowDocumentReader.Name = "my_flow_document_reader";
+            my_grid.Children.Add(myFlowDocumentReader);
+
+            // Сделать главное меню.
+            Menu mainMenu = new Menu();
+            my_grid.Children.Add(mainMenu);
+            mainMenu.HorizontalAlignment = HorizontalAlignment.Stretch;
+            mainMenu.VerticalAlignment = VerticalAlignment.Top;
+
+            // Создаем меню «Файл».
+            MenuItem fileMenuItem = new MenuItem();
+            fileMenuItem.Header = "Файл";
+            mainMenu.Items.Add(fileMenuItem);
+
+            // Создаем открытый элемент меню «Файл».
+            MenuItem openMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(openMenuItem);
+            openMenuItem.Header = "Открыть";
+            openMenuItem.Click += openMenuItem_Click;
+
+            // Дайте открытому элементу всплывающую подсказку.
+            ToolTip openToolTip = new ToolTip();
+            openMenuItem.ToolTip = openToolTip;
+            openToolTip.Content = "Открыть новый файл";
+
+            // Сделайте пункт выхода из меню «Файл».
+            MenuItem exitMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(exitMenuItem);
+            exitMenuItem.Header = "Выход";
+            exitMenuItem.Click += exitMenuItem_Click;
+
+            //// Используется для изменения размера
+            //Thickness my_thickness = new Thickness();
+            //my_thickness.Left = 50;
+            //my_thickness.Right = 100;
+            //my_thickness.Top = 50;
+            //my_thickness.Bottom = 100;
+
+            // Дайте элементу Exit всплывающую подсказку.
+            ToolTip exitToolTip = new ToolTip();
+            exitToolTip.Content = "Выйти из программы";
+            //exitToolTip.Margin = my_thickness;
+            exitMenuItem.ToolTip = exitToolTip;
+        }
+
+
+
+
+public MainWindow()
+{
+            myFlowDocumentReader.Name = "my_flow_document_reader";
+            my_grid.Children.Add(myFlowDocumentReader);
+
+            // Сделать главное меню.
+            Menu mainMenu = new Menu();
+            mainMenu.HorizontalAlignment = HorizontalAlignment.Stretch;
+            mainMenu.VerticalAlignment = VerticalAlignment.Top;
+
+            // Создаем меню «Файл».
+            MenuItem fileMenuItem = new MenuItem();
+            fileMenuItem.Header = "Файл";
+            mainMenu.Items.Add(fileMenuItem);
+
+            // Создаем открытый элемент меню «Файл».
+            MenuItem openMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(openMenuItem);
+            openMenuItem.Header = "Открыть";
+            openMenuItem.Click += openMenuItem_Click;
+
+            // Дайте открытому элементу всплывающую подсказку.
+            ToolTip openToolTip = new ToolTip();
+            openMenuItem.ToolTip = openToolTip;
+            openToolTip.Content = "Открыть новый файл";
+
+            // Создаём элемент меню "Сохранить"
+            MenuItem saveMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(saveMenuItem);
+            saveMenuItem.Header = "Сохранить";
+            saveMenuItem.Click += saveMenuItem_Click;
+
+            ToolTip saveToolTip = new ToolTip();
+            saveMenuItem.ToolTip = saveToolTip;
+            saveToolTip.Content = "Сохранить текущий файл";
+
+            // Сделайте пункт выхода из меню «Файл».
+            MenuItem exitMenuItem = new MenuItem();
+            fileMenuItem.Items.Add(exitMenuItem);
+            exitMenuItem.Header = "Выход";
+            exitMenuItem.Click += exitMenuItem_Click;
+
+            //// Используется для изменения размера
+            //Thickness my_thickness = new Thickness();
+            //my_thickness.Left = 50;
+            //my_thickness.Right = 100;
+            //my_thickness.Top = 50;
+            //my_thickness.Bottom = 100;
+
+            // Дайте элементу Exit всплывающую подсказку.
+            ToolTip exitToolTip = new ToolTip();
+            exitToolTip.Content = "Выйти из программы";
+            //exitToolTip.Margin = my_thickness;
+            exitMenuItem.ToolTip = exitToolTip;
+
+            //// Создаем меню «Файл».
+            //MenuItem fileMenuItem = new MenuItem();
+            //fileMenuItem.Header = "Файл";
+            //mainMenu.Items.Add(fileMenuItem);
+
+            // Создаем меню «Выбрать элемент просмотра».
+            MenuItem choose_viewer_MenuItem = new MenuItem();
+            choose_viewer_MenuItem.Header = "Выбрать элемент просмотра";
+            mainMenu.Items.Add(choose_viewer_MenuItem);
+
+            // Создаём пункт для просмотра "FlowDocumentScrollViewer"
+            MenuItem FlowDocumentScrollViewer_MenuItem = new MenuItem();
+            choose_viewer_MenuItem.Items.Add(FlowDocumentScrollViewer_MenuItem);
+            FlowDocumentScrollViewer_MenuItem.Header = "FlowDocumentScrollViewer";
+            FlowDocumentScrollViewer_MenuItem.Click += FlowDocumentScrollViewer_MenuItem_Click;
+
+            // Создаём пункт для просмотра "FlowDocumentPageViewer"
+            MenuItem FlowDocumentPageViewer_MenuItem = new MenuItem();
+            choose_viewer_MenuItem.Items.Add(FlowDocumentPageViewer_MenuItem);
+            FlowDocumentPageViewer_MenuItem.Header = "FlowDocumentPageViewer";
+            FlowDocumentPageViewer_MenuItem.Click += FlowDocumentPageViewer_MenuItem_Click;
+
+            // Создаём пункт для просмотра "FlowDocumentReader"
+            MenuItem FlowDocumentReader_MenuItem = new MenuItem();
+            choose_viewer_MenuItem.Items.Add(FlowDocumentReader_MenuItem);
+            FlowDocumentReader_MenuItem.Header = "FlowDocumentReader";
+            FlowDocumentReader_MenuItem.Click += FlowDocumentReader_MenuItem_Click;
+
+            my_grid.Children.Add(mainMenu);
+
+            // Создание AnnotationService для контейнера документов
+            myAnnotationService = new AnnotationService(myFlowDocumentReader);
+
+            // Создание хранилища для аннотаций
+            annotationMemoryStream = new MemoryStream();
+            AnnotationStore myAnnotationStore = new XmlStreamStore(annotationMemoryStream);
+
+            // Включение аннотирования
+            myAnnotationService.Enable(myAnnotationStore);
+}
+
+
+            //// Создаем меню «Файл».
+            //MenuItem fileMenuItem = new MenuItem();
+            //fileMenuItem.Header = "Файл";
+            //mainMenu.Items.Add(fileMenuItem);
+
+            //// Создаем меню «Выбрать элемент просмотра».
+            //MenuItem choose_viewer_MenuItem = new MenuItem();
+            //choose_viewer_MenuItem.Header = "Выбрать элемент просмотра";
+            //mainMenu.Items.Add(choose_viewer_MenuItem);
+
+            //// Создаём пункт для просмотра "FlowDocumentScrollViewer"
+            //MenuItem FlowDocumentScrollViewer_MenuItem = new MenuItem();
+            //choose_viewer_MenuItem.Items.Add(FlowDocumentScrollViewer_MenuItem);
+            //FlowDocumentScrollViewer_MenuItem.Header = "FlowDocumentScrollViewer";
+            //FlowDocumentScrollViewer_MenuItem.Click += FlowDocumentScrollViewer_MenuItem_Click;
+
+            //// Создаём пункт для просмотра "FlowDocumentPageViewer"
+            //MenuItem FlowDocumentPageViewer_MenuItem = new MenuItem();
+            //choose_viewer_MenuItem.Items.Add(FlowDocumentPageViewer_MenuItem);
+            //FlowDocumentPageViewer_MenuItem.Header = "FlowDocumentPageViewer";
+            //FlowDocumentPageViewer_MenuItem.Click += FlowDocumentPageViewer_MenuItem_Click;
+
+            //// Создаём пункт для просмотра "FlowDocumentReader"
+            //MenuItem FlowDocumentReader_MenuItem = new MenuItem();
+            //choose_viewer_MenuItem.Items.Add(FlowDocumentReader_MenuItem);
+            //FlowDocumentReader_MenuItem.Header = "FlowDocumentReader";
+            //FlowDocumentReader_MenuItem.Click += FlowDocumentReader_MenuItem_Click;
+
+
+
+
+            // Обработчик команд
+            //CommandBinding create_comment_binding = new CommandBinding(ApplicationCommands.New);
+            //create_comment_binding.Executed += new ExecutedRoutedEventHandler(Create_Comment_Command);
+            //this.CommandBindings.Add(create_comment_binding);
+
+            //CommandBinding create_comment_binding = new CommandBinding(AnnotationService.CreateInkStickyNoteCommand);
+            //create_comment_binding.Executed += new ExecutedRoutedEventHandler(Create_Comment_Command);
+            //this.CommandBindings.Add(create_comment_binding);
+
+            //CommandBinding delete_comment_binding = new CommandBinding(AnnotationService.DeleteStickyNotesCommand);
+            ////delete_comment_binding.Executed += new ExecutedRoutedEventHandler(Delete_Comment_Command);
+            //this.CommandBindings.Add(delete_comment_binding);
+
+            //CommandBinding create_highlighting_binding = new CommandBinding(AnnotationService.CreateHighlightCommand);
+            ////create_highlighting_binding.Executed += new ExecutedRoutedEventHandler(Create_Highlighting_Command);
+            //this.CommandBindings.Add(create_highlighting_binding);
+
+            //CommandBinding delete_highlighting_binding = new CommandBinding(AnnotationService.ClearHighlightsCommand);
+            ////delete_highlighting_binding.Executed += new ExecutedRoutedEventHandler(Delete_Highlighting_Command);
+            //this.CommandBindings.Add(delete_highlighting_binding);
+
+            //create_comment.Command = ApplicationCommands.New;

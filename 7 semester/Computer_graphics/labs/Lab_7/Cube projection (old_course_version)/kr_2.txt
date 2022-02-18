@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <windows.h>
+#include <gl/glut.h>
+
+
+GLUnurbsObj* nobj; 
+
+GLfloat ctlarray[][4] = {
+	{ -0.9, -0.5, 0.0, 1 },
+	{ -0.9, -0.5, 1.0, 1 },
+	{ -0.7,  0.5, 0.0, 1 },
+	{ -0.7,  0.5, 1.0, 1 },
+	{ -0.4, -0.5, 0.0, 1 },
+	{ -0.4, -0.5, 1.0, 1 },
+	{ -0.1,  0.5, 0.0, 1 },
+	{ -0.1,  0.5, 1.0, 1 },
+	{  0.2, -0.5, 0.0, 1 },
+	{  0.2, -0.5, 1.0, 1 },
+	{ 0.5,  0.5, 0.0, 1 },
+	{ 0.5,  0.5, 1.0, 1 }
+};
+
+void init()
+{
+	glClearColor(1, 1, 1, 1);
+	nobj = gluNewNurbsRenderer();
+	gluGetNurbsProperty(nobj, GLU_SAMPLING_TOLERANCE, new GLfloat(25.0));
+
+}
+void Display()
+{
+	GLfloat knot1[] = { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 2.0, 2.0, 2.0, 2.0, 2.0 };
+	GLfloat knot3[] = { 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 6.0};
+	GLfloat knot2[] = { 0.0, 0.0, 1.0, 1.0 };
+
+	glClear(GL_COLOR_BUFFER_BIT);
+	glLineWidth(3.0);
+	glRotatef(0.6, 0.5, 0.4, 0);
+	glPointSize(2.0);
+	glColor3f(1.0, 0.0, 0.0);
+
+
+	gluBeginSurface(nobj);
+	gluNurbsSurface(nobj, 11, knot1, 4, knot2, 4 * 2, 4, &ctlarray[0][0], 5, 2, GL_MAP2_VERTEX_4);
+	gluEndSurface(nobj);
+
+
+	glColor3f(1.0, 1.0, 0.0);
+	gluBeginSurface(nobj);
+	gluNurbsSurface(nobj, 8, knot3, 4, knot2, 4 * 2, 4, &ctlarray[0][0], 2, 2, GL_MAP2_VERTEX_4);
+	gluEndSurface(nobj);
+
+	glutPostRedisplay();
+	glutSwapBuffers();
+}
+void main()
+{
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	glutInitWindowSize(960, 960);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow("  ");
+	init();
+	glutDisplayFunc(Display);
+	glutMainLoop();
+}
+

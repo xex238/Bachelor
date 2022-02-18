@@ -1,0 +1,46 @@
+ant:
+<ant>
+  <mkdir dir="C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_redistribution" />
+  <mkdir dir="C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing" />
+</ant>
+mcc -W 'dotnet:resultPerimeterOld,Class1,0.0,private' -T link:lib -d C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing -v E:\MATILAB\resultPerimeterOld.m class{Class1:E:\MATILAB\resultPerimeterOld.m} 
+Compiler version: 5.1 (R2014a)
+Dependency analysis by REQUIREMENTS.
+[Warning: Adding path "E:\MATILAB" to Compiler path instance.] 
+Parsing file "E:\MATILAB\resultPerimeterOld.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "C:\Program Files\MATLAB\R2014a\toolbox\compiler\deploy\deployprint.m"
+	(Referenced from: "Compiler Command Line").
+Parsing file "C:\Program Files\MATLAB\R2014a\toolbox\compiler\deploy\printdlg.m"
+	(Referenced from: "Compiler Command Line").
+Deleting 22 temporary MEX authorization files.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_4469_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_24404_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_11496_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_11529_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_1724_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_27981_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_6350_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_2588_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_26229_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_23954_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_15600_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_21796_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_7248_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_16225_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_13472_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_8442_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_344_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_4843_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_7518_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_31472_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_31782_2596.auth'.
+Removing: 'C:\Users\st\AppData\Local\Temp\mathworks_tmp_2596_14516_2596.auth'.
+Generating file "C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\Class1Native.cs".
+Generating file "C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\Class1.cs".
+Generating file "C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\readme.txt".
+Executing command: C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /optimize /doc:"C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\resultPerimeterOld.xml" /t:library /r:"C:\Program Files\MATLAB\R2014a\toolbox\dotnetbuilder\bin\win64\v2.0\MWArray.dll" /resource:"C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\resultPerimeterOld.ctf" /out:"C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\resultPerimeterOld.dll" "C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\Class1.cs"Executing command: C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /optimize /doc:"C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\resultPerimeterOldNative.xml" /t:library /r:"C:\Program Files\MATLAB\R2014a\toolbox\dotnetbuilder\bin\win64\v2.0\MWArray.dll" /resource:"C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\resultPerimeterOld.ctf" /out:"C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\resultPerimeterOldNative.dll" "C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_testing\Class1Native.cs"
+Packaging...
+Creating the bundle...
+Web based installer created at C:\Users\st\Documents\MATLAB\resultPerimeterOld\for_redistribution\MyAppInstaller_web.exe.
+Packaging complete.

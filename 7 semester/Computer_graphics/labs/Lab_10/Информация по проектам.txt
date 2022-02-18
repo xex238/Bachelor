@@ -1,0 +1,4 @@
+Work_with_cube - не работает
+Work_with_cube(version 2.0) - работает (24 точки)
+Work_with_cube(version 3.0) - не работает
+WpfApplication3 - работает (не правильно)

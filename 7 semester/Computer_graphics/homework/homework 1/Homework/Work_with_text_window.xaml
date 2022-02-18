@@ -1,0 +1,17 @@
+﻿<Window x:Class="Homework.Work_with_text_window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework"
+        mc:Ignorable="d"
+        Title="Главное окно" x:Name="my_window" Height="450" Width="800" Closing="my_window_Closing">
+    <Grid x:Name="StartWindow">
+        <Button x:Name="FlowDocumentReaderButton" Content="Flow Document Reader" HorizontalAlignment="Center" Margin="0,185,0,0" VerticalAlignment="Top" Click="FlowDocumentReader_Click"/>
+        <Button x:Name="FlowDocumentScrollViewerButton" Content="Flow Document Scroll Viewer" HorizontalAlignment="Center" Margin="0,150,0,0" VerticalAlignment="Top" Click="FlowDocumentScrollViewerButton_Click"/>
+        <Button x:Name="FlowDocumentPageViewerButton" Content="FlowDocumentPageViewer" HorizontalAlignment="Center" Margin="0,220,0,0" VerticalAlignment="Top" Click="FlowDocumentPageViewerButton_Click"/>
+        <Label x:Name="InformationLabel" Content="Выберите один из представленных контейнеров" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="RichTextBoxButton" Content="RichTextBox" HorizontalAlignment="Center" Margin="0,255,0,0" VerticalAlignment="Top" Click="RichTextBoxButton_Click"/>
+        <Button x:Name="DocumentViewerButton" Content="DocumentViewer" HorizontalAlignment="Center" Margin="0,290,0,0" VerticalAlignment="Top" Click="DocumentViewerButton_Click"/>
+    </Grid>
+</Window>

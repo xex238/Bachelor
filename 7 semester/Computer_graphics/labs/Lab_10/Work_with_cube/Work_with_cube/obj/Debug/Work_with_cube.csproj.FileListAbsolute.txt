@@ -1,0 +1,28 @@
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\bin\Debug\Work_with_cube.exe.config
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\bin\Debug\Work_with_cube.exe
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\bin\Debug\Work_with_cube.pdb
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.csprojAssemblyReference.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\MainWindow.g.cs
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\App.g.cs
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube_MarkupCompile.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube_MarkupCompile.lref
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\MainWindow.baml
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.g.resources
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.Properties.Resources.resources
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.csproj.GenerateResource.cache
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.exe
+C:\Users\dima0\OneDrive\Рабочий стол\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.pdb
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\bin\Debug\Work_with_cube.exe.config
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\bin\Debug\Work_with_cube.exe
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\bin\Debug\Work_with_cube.pdb
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.csprojAssemblyReference.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\MainWindow.g.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\App.g.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube_MarkupCompile.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube_MarkupCompile.lref
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\MainWindow.baml
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.g.resources
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.Properties.Resources.resources
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.csproj.GenerateResource.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.exe
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №10. Работа с кубом\Work_with_cube\Work_with_cube\obj\Debug\Work_with_cube.pdb

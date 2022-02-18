@@ -1,0 +1,148 @@
+% % Код 1
+% im1 = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% figure, imshow(im1)
+% d11 = std2(im1);
+% 
+% % Код 2
+% imhist(im1);
+% [h, cx] = imhist(im1);
+% h = log10(h);
+% figure, plot(cx, h);
+% 
+% % Код 3
+% close all;
+% im = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% imshow(im);
+% 
+% img_fig = gcf;
+% figure;
+% imhist(im);
+% 
+% [h, b] = imhist(im);
+% h = log10(h);
+% figure, plot(b, h)
+% 
+% figure(img_fig)
+% 
+% improfile('bilinear')
+% 
+% % Код 4
+% RGB = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\autumn.tif');
+% imshow(RGB);
+% HSV = rgb2hsv(RGB);
+% HSV(:,:,3) = imadjust(HSV(:,:,3), [0.02 0.68], [0 1], 0.7);
+% RGB = hsv2rgb(HSV);
+% figure, imshow(RGB)
+
+% % Код 5
+% close all;
+% I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\concordorthophoto.png');
+% imshow(I);
+% figure, imhist(I);
+% 
+% I = imadjust(I, [10 200] / 255, [], 1);
+% 
+% figure, imshow(I);
+
+% % Код 6
+% close all;
+% im = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% im = im2double(im);
+% h1 = [-1, -1, -1; -1, 8, -1; -1, -1, -1];
+% im1 = filter2(h1, im);
+% figure, imshow(im), title('1');
+% figure, imshow(im1), title('2');
+
+% % Код 7
+% im = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% imshow(im);
+% 
+% I = medfilt2(im);
+% figure, imshow(I);
+
+% % Код 8
+% script;
+% echo off all;
+% close all;
+% I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% figure, imshow(I);
+% ID = imnoise(I, 'gaussian', 0, 0.01);
+% figure, imshow(ID);
+% ID = imnoise(I, 'salt & pepper', 0.05);
+% figure, imshow(ID);
+% ID = imnoise(I, 'speckle', 0.08);
+% figure, imshow(ID);
+
+% % Код 9
+% echo off all;
+% close all;
+% I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% imshow(I);
+% J = imnoise(I, 'gaussian', 0, 0.005);
+% figure, imshow(J);
+% K = wiener2(J, [5, 5]);
+% figure, imshow(K);
+
+% % Код 10
+% script;
+% echo off all;
+% close all;
+% I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\cameraman.tif');
+% imshow(I);
+% Id = im2double(I);
+% h = fftshift(fft2(Id));
+% figure, imshow(mat2gray (log10(abs(h))));
+% Io = ifft2(fftshift(h));
+% figure, imshow(mat2gray(Io));
+% clear;
+
+% % Код 11
+% echo off all;
+% close all;
+% I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\liftingbody.png');
+% imshow(I);
+% S = qtdecomp(I, .27);
+% M = full(S);
+% figure, imshow(M);
+% blocks = repmat(uint8(0), size(S));
+% for dim = [512 256 128 64 32 16 8 4 2 1 ];
+%     numblocks = length(find(S == dim));
+%     if(numblocks > 0)
+%         values = repmat(uint8(1), [dim dim numblocks]);
+%         values(2:dim, 2:dim,:) = 0;
+%         blocks = qtsetblk(blocks, S, dim, values);
+%     end
+% end
+% blocks(end, 1:end) = 1;
+% blocks(1:end, end) = 1;
+% figure, imshow(blocks, []);
+
+% % Код 12
+% echo off all;
+% close all;
+% I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\pillsetc.png');
+% figure, imshow(I);
+% I = im2bw(I, 0.5);
+% I = im2double(I);
+% L = bwlabel(I);
+% RGB = label2rgb(L);
+% figure, imshow(RGB);
+% stats = regionprops(L, 'all');
+% Area = [stats.Area];
+
+% Код 13
+echo off all;
+close all;
+I = imread('C:\Program Files\MATLAB\R2014a\toolbox\images\imdata\pears.png');
+imshow(I);
+BW1 = im2bw(I, 0.5);
+figure, imshow(BW1);
+BW2 = bwmorph(BW1, 'erode', 9);
+figure, imshow(BW2);
+BW2 = bwmorph(BW2, 'thicken', Inf);
+figure, imshow(BW2);
+BW1 = BW1 & BW2;
+figure, imshow(BW1);
+L = bwlabel(BW1);
+RGB = label2rgb(L);
+figure, imshow(RGB);

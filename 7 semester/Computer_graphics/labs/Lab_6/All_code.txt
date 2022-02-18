@@ -1,0 +1,559 @@
+//#include "glut.h"
+//#include <string>
+//#include <iostream>
+//#include <ostream>
+//using namespace std;
+//
+//// Для Безье 4 точки
+//const int n = 4;
+//GLfloat ctlarray[n + 1][2] = { {-0.9, 0.0},
+//{-0.6, -0.5},
+//{-0.3, 0.7},
+//{-0.2, 0.3} };
+//
+//double t_step = 0.001;
+//double* t_mas = new double[1 / t_step];
+//
+//double** J_matrix = new double* [1 / t_step];
+//double* P_x = new double[1 / t_step];
+//double* P_y = new double[1 / t_step];
+//
+//// Вычисление факториала
+//int factorial(int x)
+//{
+//	if (x == 0)
+//		return 1;
+//	return x * factorial(x - 1);
+//}
+//
+//void init()
+//{
+//	int counter = 0;
+//	for (double t = 0; t < 1; t = t + t_step)
+//	{
+//		t_mas[counter] = t;
+//		J_matrix[counter] = new double[n];
+//		counter++;
+//	}
+//
+//	for (int i = 0; i < 1 / t_step; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			J_matrix[i][j] = factorial(n - 1) * pow(t_mas[i], j) * pow(1 - t_mas[i], n - 1 - j) / (factorial(j) * factorial(n - 1 - j));
+//		}
+//	}
+//
+//	for (int i = 0; i < 1 / t_step; i++)
+//	{
+//		double value_x = 0;
+//		double value_y = 0;
+//		for (int j = 0; j < n; j++)
+//		{
+//			value_x += ctlarray[j][0] * J_matrix[i][j];
+//			value_y += ctlarray[j][1] * J_matrix[i][j];
+//		}
+//		P_x[i] = value_x;
+//		P_y[i] = value_y;
+//	}
+//}
+//
+//void Display()
+//{
+//	glClear(GL_COLOR_BUFFER_BIT);
+//
+//	glColor3f(0, 0, 1);
+//	glPointSize(4.0);
+//	glBegin(GL_POINTS);
+//
+//	// Вывод на экран опорных точек
+//	for (int i = 0; i < n; i++)
+//	{
+//		glVertex2d(ctlarray[i][0], ctlarray[i][1]);
+//	}
+//	glEnd();
+//
+//	glPointSize(3.0);
+//	glColor3f(0, 1, 0);
+//	glBegin(GL_POINTS);
+//
+//	// Вывод на экран опорных точек
+//	for (int i = 0; i < 1 / t_step; i++)
+//	{
+//		glVertex2d(P_x[i], P_y[i]);
+//	}
+//	glEnd();
+//
+//	glutPostRedisplay();
+//	glutSwapBuffers();
+//}
+//
+//int main(int arcg, char** arcv)
+//{
+//	glutInit(&arcg, arcv);
+//
+//	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+//	glutInitWindowSize(960, 480);
+//
+//	glutInitWindowPosition(100, 100);
+//	glutCreateWindow(" ");
+//	glClearColor(1, 1, 1, 1);
+//	init();
+//	glutDisplayFunc(Display);
+//	glutMainLoop();
+//}
+
+
+
+
+
+
+
+
+// Поверхность Безье
+#include "glut.h"
+#include <string>
+#include <iostream>
+#include <ostream>
+#include <math.h>
+#include <stdio.h>
+using namespace std;
+
+// Полигональная сетка
+const int n = 3;
+const int m = 3;
+//GLfloat B[n + 1][m + 1] = { {4, -48, 48, -4},
+//{-4, 32, -4, 0},
+//{9, -9, 0, 0},
+//{-1, 0, 0, 0} };
+
+//GLfloat B[n + 1][m + 1] = { {15, 3, -3, 1},
+//{3, -6, 3, 0},
+//{-3, 3, 0, 0},
+//{-1, 0, 0, 0} };
+
+
+//GLfloat B[n + 1][m + 1] = { {4, -48, 48, -4},
+//{-1, 3, -1, 0},
+//{9, -9, 0, 0},
+//{-1, 0, 0, 0} };
+
+//GLfloat B[n + 1][m + 1] = { {9, 4, 5, -3, 6},
+//{4, 8, -1, 0, 3},
+//{3, 4, 2, 5, 6},
+//{3, 2, 1, 7, 4} };
+
+
+//GLfloat bp[][4][2] = {
+//	{ { 0.0,0.0 },{ -0.5,-0.95 },{ 0.0,-0.95 },{ 0.5,-0.95 } } ,
+//	{ { -0.95,-0.5 },{ -0.5,-0.5 },{ 0.0,-0.5 },{ 0.5,-0.5 } },
+//	{ { 0.95,0.0 },{ -0.5,0.0 },{ 0.0,0.0 },{ 0.5,0.0 } },
+//	{ { -0.95,0.5 },{ -0.5,0.5 },{ 0.0,0.5 },{ 0.0,0.0 } }
+//};
+
+GLfloat B[][4][2] = {
+	{ { -0.75, -0.75 },{ -0.75, -0.25 },{ -0.75, 0.25 },{ -0.75, 0.75 } } ,
+	{ { -0.25, -0.75 },{ -0.25, -0.25 },{ -0.25, 0.25 },{ -0.25, 0.75 } },
+	{ { 0.25, -0.75 },{ 0.25, -0.25 },{ 0.25, 0.25 },{ 0.25, 0.75 } },
+	{ { 0.0, 0.0 },{ 0.75, -0.25 },{ 0.75, 0.25 },{ 0.75, 0.75 } }
+};
+
+double B_sum = 0;
+
+double u_step = 0.01;
+double* u_mas = new double[1 / u_step + 1];
+
+double w_step = 0.01;
+double* w_mas = new double[1 / w_step + 1];
+
+double** J = new double* [1 / u_step + 1];
+double** K = new double* [1 / w_step + 1];
+
+double** Q = new double* [1 / u_step + 1];
+
+double*** P = new double** [1 / u_step + 1];
+
+// Вычисление факториала
+int factorial(int x)
+{
+	if (x == 0)
+		return 1;
+	return x * factorial(x - 1);
+}
+
+// Вычисление значения для P_u_w для x
+double get_P_u_w_x(double u, double w)
+{
+	double* mas_1 = new double[4];
+	mas_1[0] = pow(1 - u, 3);
+	mas_1[1] = 3 * pow(1 - u, 2) * u;
+	mas_1[2] = 3 * (1 - u) * u * u;
+	mas_1[3] = pow(u, 3);
+
+	double* mas_2 = new double[4];
+	mas_2[0] = pow(1 - w, 3);
+	mas_2[1] = 3 * pow(1 - w, 2) * w;
+	mas_2[2] = 3 * (1 - w) * w * w;
+	mas_2[3] = pow(w, 3);
+
+	double* helper_mas = new double[4];
+
+	for (int i = 0; i < 4; i++)
+	{
+		helper_mas[i] = 0;
+		for (int j = 0; j < 4; j++)
+		{
+			helper_mas[i] = helper_mas[i] + mas_1[j] * B[j][i][0];
+		}
+	}
+
+	double P_u_w = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		P_u_w = P_u_w + helper_mas[i] * mas_2[i];
+	}
+	return P_u_w;
+}
+
+// Вычисление значения для P_u_w для y
+double get_P_u_w_y(double u, double w)
+{
+	double* mas_1 = new double[4];
+	mas_1[0] = pow(1 - u, 3);
+	mas_1[1] = 3 * pow(1 - u, 2) * u;
+	mas_1[2] = 3 * (1 - u) * u * u;
+	mas_1[3] = pow(u, 3);
+
+	double* mas_2 = new double[4];
+	mas_2[0] = pow(1 - w, 3);
+	mas_2[1] = 3 * pow(1 - w, 2) * w;
+	mas_2[2] = 3 * (1 - w) * w * w;
+	mas_2[3] = pow(w, 3);
+
+	double* helper_mas = new double[4];
+
+	for (int i = 0; i < 4; i++)
+	{
+		helper_mas[i] = 0;
+		for (int j = 0; j < 4; j++)
+		{
+			helper_mas[i] = helper_mas[i] + mas_1[j] * B[j][i][1];
+		}
+	}
+
+	double P_u_w = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		P_u_w = P_u_w + helper_mas[i] * mas_2[i];
+	}
+	return P_u_w;
+}
+
+void init()
+{
+	// Инициализируем массив J
+	int counter = 0;
+	for (double u = 0; u <= 1; u = u + u_step)
+	{
+		u_mas[counter] = u;
+		J[counter] = new double[n + 1];
+		counter++;
+	}
+
+	// Инициализируем массив K
+	counter = 0;
+	for (double w = 0; w <= 1; w = w + w_step)
+	{
+		w_mas[counter] = w;
+		K[counter] = new double[m + 1];
+		counter++;
+	}
+
+	// Заполнение матрицы J
+	counter = 0;
+	for (double u = 0; u <= 1; u = u + u_step)
+	{
+		for (int i = 0; i <= n; i++)
+		{
+			J[counter][i] = factorial(n) * pow(u, i) * pow(1 - u, n - i) / (factorial(i) * factorial(n - i));
+		}
+		counter++;
+	}
+
+	// Заполнение матрицы K
+	counter = 0;
+	for (double w = 0; w <= 1; w = w + w_step)
+	{
+		for (int j = 0; j <= m; j++)
+		{
+			K[counter][j] = factorial(m) * pow(w, j) * pow(1 - w, m - j) / (factorial(j) * factorial(m - j));
+		}
+	}
+
+	//// Находим B_sum (необходимо для дальнейшего поиска Q)
+	//for (int i = 0; i < n + 1; i++)
+	//{
+	//	for (int j = 0; j < m + 1; j++)
+	//	{
+	//		B_sum = B_sum + B[i][j];
+	//	}
+	//}
+
+	//// Заполнение матрицы Q
+	//counter = 0;
+	//for (double u = 0; u <= 1; u = u + u_step)
+	//{
+	//	int counter_2 = 0;
+	//	Q[counter] = new double[1 / w_step + 1];
+	//	for (double w = 0; w <= 1; w = w + w_step)
+	//	{
+	//		double J_value = 0;
+	//		double K_value = 0;
+	//		for (int i = 0; i <= n; i++)
+	//		{
+	//			J_value = J_value + J[counter][i];
+	//		}
+	//		for (int j = 0; j <= 1; j++)
+	//		{
+	//			K_value = K_value + K[counter_2][j];
+	//		}
+	//		Q[counter][counter_2] = B_sum * J_value * K_value;
+	//		counter_2++;
+	//	}
+	//	counter++;
+	//}
+
+	//	// Вывод поверхности Безье в консоль
+	//counter = 0;
+	//for (double u = 0; u <= 1; u = u + u_step)
+	//{
+	//	int counter_2 = 0;
+	//	for (double w = 0; w <= 1; w = w + w_step)
+	//	{
+	//		cout << u_mas[counter] << " " << w_mas[counter_2] << " " << Q[counter][counter_2] << endl;
+	//		counter_2++;
+	//	}
+	//	counter++;
+	//}
+
+	// Подсчёт значений для P
+	counter = 0;
+	for (double u = 0; u <= 1; u = u + u_step)
+	{
+		P[counter] = new double*[1 / w_step + 1];
+		int counter_2 = 0;
+		for (double w = 0; w <= 1; w = w + w_step)
+		{
+			P[counter][counter_2] = new double[2];
+			P[counter][counter_2][0] = get_P_u_w_x(u, w);
+			P[counter][counter_2][1] = get_P_u_w_y(u, w);
+			//cout << P[counter][counter_2] << " ";
+			counter_2++;
+		}
+		counter++;
+		//cout << endl;
+	}
+}
+
+void Display()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	glPointSize(3.0);
+	glColor3f(0, 1, 0);
+	//glBegin(GL_POINTS);
+
+	//// Вывод поверхности Безье на экран
+	//int counter = 0;
+	//for (double u = 0; u <= 1; u = u + u_step)
+	//{
+	//	int counter_2 = 0;
+	//	for (double w = 0; w <= 1; w = w + w_step)
+	//	{
+	//		glVertex3d(u_mas[counter], w_mas[counter_2], Q[counter][counter_2]);
+	//		counter_2++;
+	//	}
+	//	counter++;
+	//}
+
+	//glEnd();
+
+	glPointSize(3.0);
+	glColor3f(0, 1, 0);
+	glBegin(GL_POINTS);
+	//glRotated(45, 0.1, 0.1, 0.1);
+
+	int counter = 0;
+	for (double u = 0; u <= 1; u = u + u_step)
+	{
+		int counter_2 = 0;
+		for (double w = 0; w <= 1; w = w + w_step)
+		{
+			//glVertex3d(u, w, P[counter][counter_2]);
+			glVertex3d(P[counter][counter_2][0], P[counter][counter_2][1], 0);
+			counter_2++;
+		}
+		counter++;
+	}
+
+	glEnd();
+	glFlush();
+	//glPointSize(5.0);
+	//glColor3f(0, 0, 1);
+	//glBegin(GL_POINTS);
+
+	//glVertex3d(0, 0, 0.5);
+	//glVertex3d(0, 0, 0.75);
+	//glVertex3d(0, 0.5, 0);
+	//glVertex3d(0.5, 0, 0);
+
+	//glEnd();
+
+	glutPostRedisplay();
+	glutSwapBuffers();
+}
+
+int main(int arcg, char** arcv)
+{
+	init();
+	glutInit(&arcg, arcv);
+
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	glutInitWindowSize(960, 480);
+
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow(" ");
+	glClearColor(1, 1, 1, 1);
+	glutDisplayFunc(Display);
+	glutMainLoop();
+}
+
+
+
+
+
+
+
+
+//// Правильное построение кривой Безье
+//#include <stdio.h>
+//#include <windows.h>
+//#include "glut.h"
+//#include <cmath>
+//#include <iostream>
+//
+//using namespace std;
+//
+//GLUnurbsObj* nobj;  //ПРАВЕЛЬНАЯ ПРЯМАЯ ПО ТОЧКАМ
+//GLfloat ctlarray[][3] = {
+//	{ -0.8,  0.8 },
+//	{ -0.6, -0.7 },
+//	{  0.0,  0.5 },
+//	{  0.7,  0.2 }
+//};
+//
+//// Первоначальная сетка
+////GLfloat bp[][4][2] = {
+////	{ { 0.0,0.0 },{ -0.5,-0.95 },{ 0.0,-0.95 },{ 0.5,-0.95 } } ,
+////	{ { -0.95,-0.5 },{ -0.5,-0.5 },{ 0.0,-0.5 },{ 0.5,-0.5 } },
+////	{ { 0.95,0.0 },{ -0.5,0.0 },{ 0.0,0.0 },{ 0.5,0.0 } },
+////	{ { -0.95,0.5 },{ -0.5,0.5 },{ 0.0,0.5 },{ 0.0,0.0 } }
+////};
+//
+//// Сетка для плоскости
+////GLfloat bp[][4][2] = {
+////	{ { -0.75, -0.75 },{ -0.75, -0.25 },{ -0.75, 0.25 },{ -0.75, 0.75 } } ,
+////	{ { -0.25, -0.75 },{ -0.25, -0.25 },{ -0.25, 0.25 },{ -0.25, 0.75 } },
+////	{ { 0.25, -0.75 },{ 0.25, -0.25 },{ 0.25, 0.25 },{ 0.25, 0.75 } },
+////	{ { 0.75, -0.75 },{ 0.75, -0.25 },{ 0.75, 0.25 },{ 0.75, 0.75 } }
+////};
+//
+//// Сетка для загибания кривой
+//GLfloat bp[][4][2] = {
+//	{ { -0.75, -0.75 },{ -0.75, -0.25 },{ -0.75, 0.25 },{ -0.75, 0.75 } } ,
+//	{ { -0.25, -0.75 },{ -0.25, -0.25 },{ -0.25, 0.25 },{ -0.25, 0.75 } },
+//	{ { 0.25, -0.75 },{ 0.25, -0.25 },{ 0.25, 0.25 },{ 0.25, 0.75 } },
+//	{ { 0.0, 0.0 },{ 0.75, -0.25 },{ 0.75, 0.25 },{ 0.75, 0.75 } }
+//};
+//
+//int fact(int n) {
+//	int val = 1;
+//	for (int i = 2; i < n + 1; i++) {
+//		val = val * i;
+//	}
+//	return val;
+//}
+//
+//int C(int n, int k) {
+//	return fact(n) / (fact(k) * fact(n - k));
+//}
+//
+//float BezePoly(int n, int i, float t) {
+//	int c = C(n, i);
+//	return c * pow(t, i) * pow(1 - t, n - i);
+//}
+//
+//float BezePoly3d(int n, int m, int i, int j, float u, float w) {
+//	int c1 = C(n, i);
+//	int c2 = C(m, j);
+//	return c1 * pow(u, i) * pow(1 - u, n - i) * c2 * pow(w, j) * pow(1 - w, m - j);
+//}
+//
+//void Display()
+//{
+//	glClear(GL_COLOR_BUFFER_BIT);
+//	glPointSize(3.0);
+//	glColor3f(0.0, 1.0, 0.0);
+//	//int n = 3;
+//	/*glBegin(GL_POINTS);
+//	for (float t = 0.0; t < 1.0; t = t + 0.01) {
+//		GLfloat x = 0.0;
+//		GLfloat y = 0.0;
+//		for (int i = 0; i <= n; i++) {
+//			x = x + BezePoly(n, i, t) * ctlarray[i][0];
+//			y = y + BezePoly(n, i, t) * ctlarray[i][1];
+//		}
+//		cout << x << y << endl;
+//		glVertex3f(x, y, 0.5);
+//	}
+//	glEnd();
+//	glFlush();*/
+//
+//	int n = 3;
+//	int m = 3;
+//	glBegin(GL_POINTS);
+//	for (int i = 0; i <= n; i++) {
+//		for (int j = 0; j <= n; j++) {
+//			glVertex3f(bp[i][j][0], bp[i][j][1], 0);
+//		}
+//	}
+//
+//	for (float u = 0; u <= 1; u += 0.01) {
+//		for (float w = 0; w <= 1; w += 0.01) {
+//			GLfloat x = 0.0;
+//			GLfloat y = 0.0;
+//			for (int i = 0; i <= n; i++) {
+//				for (int j = 0; j <= m; j++) {
+//					x += bp[i][j][0] * BezePoly3d(n, m, i, j, u, w);
+//					y += bp[i][j][1] * BezePoly3d(n, m, i, j, u, w);
+//				}
+//			}
+//			glVertex3f(x, y, 0);
+//		}
+//	}
+//	glEnd();
+//	glFlush();
+//}
+//
+//
+//void main(int arcg, char** arcv)
+//{
+//	glutInit(&arcg, arcv);
+//
+//	glutInitDisplayMode(GLUT_RGBA | GLUT_SINGLE);
+//	glutInitWindowSize(960, 960);
+//	glutInitWindowPosition(100, 100);
+//	glutCreateWindow("  ");
+//	glutDisplayFunc(Display);
+//	glutMainLoop();
+//}

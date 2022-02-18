@@ -1,0 +1,2 @@
+Значение узлов при рисовании кривой NURBS:
+http://qaru.site/questions/1818199/meaning-of-knots-when-drawing-a-nurbs-curve

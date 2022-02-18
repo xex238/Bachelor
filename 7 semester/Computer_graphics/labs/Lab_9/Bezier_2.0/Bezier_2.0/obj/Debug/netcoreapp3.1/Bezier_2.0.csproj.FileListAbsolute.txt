@@ -1,0 +1,17 @@
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\bin\Debug\netcoreapp3.1\Bezier_2.0.exe
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\bin\Debug\netcoreapp3.1\Bezier_2.0.deps.json
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\bin\Debug\netcoreapp3.1\Bezier_2.0.runtimeconfig.json
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\bin\Debug\netcoreapp3.1\Bezier_2.0.runtimeconfig.dev.json
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\bin\Debug\netcoreapp3.1\Bezier_2.0.dll
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\bin\Debug\netcoreapp3.1\Bezier_2.0.pdb
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0.csprojAssemblyReference.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\App.g.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0_MarkupCompile.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0_MarkupCompile.lref
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\MainWindow.baml
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0.g.resources
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0.AssemblyInfoInputs.cache
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0.AssemblyInfo.cs
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0.dll
+E:\Users\Дмитрий\Учебники\7 семестр\Компьютерная графика\Лабораторные работы\Лабораторная работа №9. Кривые Безье (WPF)\Bezier_2.0\Bezier_2.0\obj\Debug\netcoreapp3.1\Bezier_2.0.pdb
