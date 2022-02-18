@@ -27,3 +27,5 @@
   - Numerical_methods (Численные методы)
 - 7 semester
   - Neural networks (Нейронные сети)
+  - Global networks (Глобальные сети)
+  - Databases (Базы данных)
