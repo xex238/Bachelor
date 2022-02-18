@@ -29,3 +29,5 @@
   - Neural networks (Нейронные сети)
   - Global networks (Глобальные сети)
   - Databases (Базы данных)
+- 8 semester
+  - Image_processing (Обработка изображений)
