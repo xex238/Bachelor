@@ -18,6 +18,8 @@
 
 # Дерево репозитория
 
+- 3 semester
+  - C_programming (Программирование на C++)
 - 4 semester
   - Discrete_math (Дискретная математика)
   - Graph_theory (Теория графов)
