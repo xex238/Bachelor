@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.0)
+
+project( novitskiy_d_a )
+
+add_subdirectory( array )
+add_subdirectory( complex )
+add_subdirectory( kvaternion )
+add_subdirectory( vec_3d )
+add_subdirectory( vec_3dT )
+add_subdirectory( matrix )
+add_subdirectory( stack )
+add_subdirectory( stackT )
+add_subdirectory( queue_with_priority )
+add_subdirectory( stack_arrayT )
+add_subdirectory( course_work )

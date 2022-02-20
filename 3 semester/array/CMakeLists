@@ -1,0 +1,1 @@
+add_executable ( Array.cpp Array.h Array_dop.cpp )
